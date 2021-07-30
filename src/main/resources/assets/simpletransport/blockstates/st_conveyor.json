@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "simpletransport:block/st_conveyor"
+    },
+    "facing=east": {
+      "model": "simpletransport:block/st_conveyor",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "simpletransport:block/st_conveyor",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "simpletransport:block/st_conveyor",
+      "y": 270
+    }
+  }
+}

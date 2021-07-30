@@ -1,9 +1,9 @@
-# Fabric Example Mod
+# SimpleTransport
 
-## Setup
+## Development
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+Mod is in development, can change anytime.
 
-## License
+## Description
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+SimpleTransport is a mod that brings very simple conveyer-belts, and other related transport-contraptions.

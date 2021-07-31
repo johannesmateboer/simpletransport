@@ -1,10 +1,9 @@
 package net.pattox.simpletransport.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
@@ -14,12 +13,21 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.pattox.simpletransport.util.MovementUtil;
+import net.pattox.simpletransport.SimpleTransport;
+import net.pattox.simpletransport.entity.ExtractorEntity;
+import org.jetbrains.annotations.Nullable;
 
-public class Conveyor extends Block {
-    public Conveyor(Settings settings) {
+public class Extractor extends BlockWithEntity {
+
+    public Extractor(Settings settings) {
         super(settings);
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new ExtractorEntity(pos, state);
     }
 
     @Override
@@ -35,23 +43,19 @@ public class Conveyor extends Block {
     }
 
     @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
+    }
+
+    @Override
     public VoxelShape getOutlineShape(BlockState blockState, BlockView blockView, BlockPos blockPos, ShapeContext entityContext) {
         // Set the bounding-box
         return VoxelShapes.cuboid(0, 0, 0, 1, (1F / 16F), 1);
     }
 
+    @Nullable
     @Override
-    public void onEntityCollision(BlockState blockState, World world, BlockPos blockPos, Entity entity) {
-        // Player can sneak over the conveyor
-        if (entity instanceof PlayerEntity && entity.isSneaking()) {
-            return;
-        }
-        // Check if the conveyor should move the entity
-        /*if (!entity.isOnGround() || (entity.getY() - blockPos.getY()) != (4F / 16F)) {
-            return;
-        }*/
-        // Do the movement.
-        MovementUtil.pushEntity(entity, blockPos, 1.0F / 16.0F, blockState.get(Properties.HORIZONTAL_FACING));
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return checkType(type, SimpleTransport.EXTRACTOR_ENTITY, ExtractorEntity::tick);
     }
-
 }

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "simpletransport:block/extractor"
+    },
+    "facing=east": {
+      "model": "simpletransport:block/extractor",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "simpletransport:block/extractor",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "simpletransport:block/extractor",
+      "y": 270
+    }
+  }
+}

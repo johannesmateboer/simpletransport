@@ -1,0 +1,8 @@
+{
+  "block.simpletransport.st_conveyor" : "Conveyorbelt",
+  "block.simpletransport.st_conveyor.tooltip" : "Basic conveyor-belt, just moves items. Does not insert or extract.",
+  "block.simpletransport.extractor" : "Extractor",
+  "block.simpletransport.extractor.tooltip" : "Pulls items from an inventory and drops them on the belt.",
+  "block.simpletransport.inserter" : "Inserter",
+  "block.simpletransport.inserter.tooltip" : "Inserts items dropped in front of it in an attached inventory."
+}

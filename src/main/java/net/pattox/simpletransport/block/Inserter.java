@@ -1,23 +1,23 @@
 package net.pattox.simpletransport.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.ItemEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.pattox.simpletransport.util.MovementUtil;
 
-public class Conveyor extends Block {
-    public Conveyor(Settings settings) {
+public class Inserter extends Block {
+
+    public Inserter(Settings settings) {
         super(settings);
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
@@ -37,21 +37,29 @@ public class Conveyor extends Block {
     @Override
     public VoxelShape getOutlineShape(BlockState blockState, BlockView blockView, BlockPos blockPos, ShapeContext entityContext) {
         // Set the bounding-box
-        return VoxelShapes.cuboid(0, 0, 0, 1, (1F / 16F), 1);
+        return VoxelShapes.cuboid(0, 0, 0, 1, (1f/16f), 1);
     }
 
     @Override
-    public void onEntityCollision(BlockState blockState, World world, BlockPos blockPos, Entity entity) {
-        // Player can sneak over the conveyor
-        if (entity instanceof PlayerEntity && entity.isSneaking()) {
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+        if (!(entity instanceof ItemEntity)) {
             return;
         }
-        // Check if the conveyor should move the entity
-        /*if (!entity.isOnGround() || (entity.getY() - blockPos.getY()) != (4F / 16F)) {
-            return;
-        }*/
-        // Do the movement.
-        MovementUtil.pushEntity(entity, blockPos, 1.0F / 16.0F, blockState.get(Properties.HORIZONTAL_FACING));
+
+        ItemEntity droppedItems = (ItemEntity) entity;
+        Direction direction = state.get(HorizontalFacingBlock.FACING);
+
+        if (world.getBlockEntity(pos.offset(direction.getOpposite())) instanceof Inventory) {
+            Inventory targetInventory = (Inventory) world.getBlockEntity(pos.offset(direction.getOpposite()));
+            for (int i = 0; i < targetInventory.size(); i++) {
+                if (targetInventory.isValid(i, droppedItems.getStack())) {
+                    targetInventory.setStack(i, droppedItems.getStack());
+                    droppedItems.remove(Entity.RemovalReason.DISCARDED);
+                    break;
+                }
+            }
+        }
     }
+
 
 }

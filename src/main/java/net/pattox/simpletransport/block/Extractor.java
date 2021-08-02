@@ -56,7 +56,7 @@ public class Extractor extends BlockWithEntity {
     public VoxelShape getOutlineShape(BlockState blockState, BlockView blockView, BlockPos blockPos, ShapeContext entityContext) {
         // Set the bounding-box
         VoxelShape belt = VoxelUtil.createCuboid(0, 0, 0, 16, 1, 16);
-        VoxelShape connector = VoxelUtil.createCuboid(2, 1, 8, 14, 10, 16);
+        VoxelShape connector = VoxelUtil.createCuboid(1, 1, 12, 15, 10, 16);
         VoxelShape extractor = VoxelShapes.combine(belt, connector, BooleanBiFunction.OR);
         return VoxelUtil.rotateShape(Direction.NORTH, blockState.get(Properties.HORIZONTAL_FACING), extractor);
     }

@@ -30,8 +30,6 @@ public class ExtractorEntity extends BlockEntity {
         if (blockEntity.interval > 50) {
             Direction direction = blockEntity.getCachedState().get(Properties.HORIZONTAL_FACING);
 
-
-
             // Is there something like and inventory on the other side?
             if (world.getBlockEntity(pos.offset(direction.getOpposite())) instanceof Inventory) {
                 Inventory targetInventory = (Inventory) world.getBlockEntity(pos.offset(direction.getOpposite()));
@@ -41,6 +39,7 @@ public class ExtractorEntity extends BlockEntity {
                     if (targetInventory instanceof SidedInventory && !((SidedInventory) targetInventory).canExtract(i, targetStack, direction)) {
                         continue;
                     }
+
                     if (!targetStack.isEmpty()) {
                         ItemStack droppableStack = targetInventory.getStack(i);
                         ItemSpawner.spawnOnBelt(world, pos, droppableStack);

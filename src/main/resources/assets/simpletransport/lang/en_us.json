@@ -1,8 +1,11 @@
 {
+  "itemGroup.simpletransport.general": "SimpleTransport",
   "block.simpletransport.conveyor" : "Conveyorbelt",
   "block.simpletransport.conveyor.tooltip" : "Basic conveyor-belt, just moves items. Does not insert or extract.",
   "block.simpletransport.extractor" : "Extractor",
   "block.simpletransport.extractor.tooltip" : "Pulls items from an inventory and drops them on the belt.",
   "block.simpletransport.inserter" : "Inserter",
-  "block.simpletransport.inserter.tooltip" : "Inserts items dropped in front of it in an attached inventory."
+  "block.simpletransport.inserter.tooltip" : "Inserts items dropped in front of it in an attached inventory.",
+  "block.simpletransport.destructor" : "Destructor",
+  "block.simpletransport.destructor.tooltip" : "Destroys items."
 }

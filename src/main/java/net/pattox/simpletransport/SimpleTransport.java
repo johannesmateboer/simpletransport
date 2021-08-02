@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.pattox.simpletransport.block.Conveyor;
+import net.pattox.simpletransport.block.Destructor;
 import net.pattox.simpletransport.block.Extractor;
 import net.pattox.simpletransport.block.Inserter;
 import net.pattox.simpletransport.entity.ExtractorEntity;
@@ -33,8 +34,11 @@ public class SimpleTransport implements ModInitializer {
 
 	public static final Block INSERTER;
 	public static final BlockItem INSERTER_ITEM;
-	//public static BlockEntityType<InserterEntity> INSERTER_ENTITY;
 	public static final Identifier INSERTER_IDENTIFIER = new Identifier(MOD_ID, "inserter");
+
+	public static final Block DESTRUCTOR;
+	public static final BlockItem DESTRUCTOR_ITEM;
+	public static final Identifier DESTRUCTOR_IDENTIFIER = new Identifier(MOD_ID, "destructor");
 
 	// Set the ItemGroup
 	public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.create(
@@ -43,16 +47,19 @@ public class SimpleTransport implements ModInitializer {
 			.build();
 
 	static {
-		CONVEYOR = Registry.register(Registry.BLOCK, CONVEYOR_IDENTIFIER, new Conveyor(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD).nonOpaque()));
+		CONVEYOR = Registry.register(Registry.BLOCK, CONVEYOR_IDENTIFIER, new Conveyor(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
 		CONVEYOR_ITEM = Registry.register(Registry.ITEM, CONVEYOR_IDENTIFIER, new BlockItem(CONVEYOR, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
 
-		EXTRACTOR = Registry.register(Registry.BLOCK, EXTRACTOR_IDENTIFIER, new Extractor(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD).nonOpaque()));
+		EXTRACTOR = Registry.register(Registry.BLOCK, EXTRACTOR_IDENTIFIER, new Extractor(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
 		EXTRACTOR_ITEM = Registry.register(Registry.ITEM, EXTRACTOR_IDENTIFIER, new BlockItem(EXTRACTOR, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
 		EXTRACTOR_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, EXTRACTOR_IDENTIFIER, FabricBlockEntityTypeBuilder.create(ExtractorEntity::new, EXTRACTOR).build(null));
 
-		INSERTER = Registry.register(Registry.BLOCK, INSERTER_IDENTIFIER, new Inserter(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD).nonOpaque()));
+		INSERTER = Registry.register(Registry.BLOCK, INSERTER_IDENTIFIER, new Inserter(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
 		INSERTER_ITEM = Registry.register(Registry.ITEM, INSERTER_IDENTIFIER, new BlockItem(INSERTER, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
-		//INSERTER_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, INSERTER_IDENTIFIER, FabricBlockEntityTypeBuilder.create(InserterEntity::new, EXTRACTOR).build(null));
+
+		DESTRUCTOR = Registry.register(Registry.BLOCK, DESTRUCTOR_IDENTIFIER, new Destructor(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
+		DESTRUCTOR_ITEM = Registry.register(Registry.ITEM, DESTRUCTOR_IDENTIFIER, new BlockItem(DESTRUCTOR, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
+
 	}
 
 	@Override

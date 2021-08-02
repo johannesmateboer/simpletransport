@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "simpletransport:inserter"
+    }
+  ],
+  "result": {
+    "item": "simpletransport:extractor",
+    "count": 1
+  }
+}

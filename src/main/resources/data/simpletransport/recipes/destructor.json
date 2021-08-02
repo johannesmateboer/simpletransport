@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CHS",
+    "CL "
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:cobblestone"
+    },
+    "L": {
+      "item": "minecraft:lava_bucket"
+    },
+    "H": {
+      "item": "minecraft:hopper"
+    },
+    "S": {
+      "item": "simpletransport:conveyor"
+    }
+  },
+  "result": {
+    "item": "simpletransport:destructor",
+    "count": 1
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "simpletransport:block/destructor"
+    },
+    "facing=east": {
+      "model": "simpletransport:block/destructor",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "simpletransport:block/destructor",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "simpletransport:block/destructor",
+      "y": 270
+    }
+  }
+}

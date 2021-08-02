@@ -4,6 +4,8 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
@@ -15,6 +17,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.pattox.simpletransport.SimpleTransport;
 import net.pattox.simpletransport.entity.ExtractorEntity;
+import net.pattox.simpletransport.util.MovementUtil;
 import org.jetbrains.annotations.Nullable;
 
 public class Extractor extends BlockWithEntity {
@@ -58,4 +61,17 @@ public class Extractor extends BlockWithEntity {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return checkType(type, SimpleTransport.EXTRACTOR_ENTITY, ExtractorEntity::tick);
     }
+
+    @Override
+    public void onEntityCollision(BlockState blockState, World world, BlockPos blockPos, Entity entity) {
+        // Player can sneak over the conveyor
+        if (entity instanceof PlayerEntity) {
+            return;
+        }
+
+        // Do the movement.
+        MovementUtil.pushEntity(entity, blockPos, 1.0F / 16.0F, blockState.get(Properties.HORIZONTAL_FACING));
+
+    }
+
 }

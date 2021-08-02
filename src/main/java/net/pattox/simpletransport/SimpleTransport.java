@@ -24,7 +24,7 @@ public class SimpleTransport implements ModInitializer {
 
 	public static final Block CONVEYOR;
 	public static final BlockItem CONVEYOR_ITEM;
-	public static final Identifier CONVEYOR_IDENTIFIER = new Identifier(MOD_ID, "st_conveyor");
+	public static final Identifier CONVEYOR_IDENTIFIER = new Identifier(MOD_ID, "conveyor");
 
 	public static final Block EXTRACTOR;
 	public static final BlockItem EXTRACTOR_ITEM;

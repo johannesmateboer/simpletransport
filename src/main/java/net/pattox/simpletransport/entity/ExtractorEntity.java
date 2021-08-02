@@ -11,13 +11,10 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.pattox.simpletransport.SimpleTransport;
 import net.pattox.simpletransport.util.ItemSpawner;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class ExtractorEntity extends BlockEntity {
 
     private int interval = 0;
-    private static final Logger LOGGER = LogManager.getLogger();
 
     public ExtractorEntity(BlockPos pos, BlockState state) {
         super(SimpleTransport.EXTRACTOR_ENTITY, pos, state);

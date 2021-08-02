@@ -2,6 +2,8 @@
   "itemGroup.simpletransport.general": "SimpleTransport",
   "block.simpletransport.conveyor" : "Conveyorbelt",
   "block.simpletransport.conveyor.tooltip" : "Basic conveyor-belt, just moves items. Does not insert or extract.",
+  "block.simpletransport.conveyor_detector" : "Conveyorbelt with itemdetector",
+  "block.simpletransport.conveyor_detector.tooltip" : "Emits a redstone signal when items are conveyed.",
   "block.simpletransport.extractor" : "Extractor",
   "block.simpletransport.extractor.tooltip" : "Pulls items from an inventory and drops them on the belt.",
   "block.simpletransport.inserter" : "Inserter",

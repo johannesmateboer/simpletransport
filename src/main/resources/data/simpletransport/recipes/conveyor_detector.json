@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RCR",
+    "   ",
+    "   "
+  ],
+  "key": {
+    "C": {
+      "item": "simpletransport:conveyor"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "simpletransport:conveyor_detector",
+    "count": 1
+  }
+}

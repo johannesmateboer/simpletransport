@@ -11,12 +11,14 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.pattox.simpletransport.util.VoxelUtil;
 
 public class Inserter extends Block {
 
@@ -28,7 +30,7 @@ public class Inserter extends Block {
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         // When the player is sneaking, the conveyor will be placed rotated.
-        return this.getDefaultState().with(Properties.HORIZONTAL_FACING, ctx.getPlayer().isSneaking() ? ctx.getPlayerFacing().getOpposite() : ctx.getPlayerFacing());
+        return this.getDefaultState().with(Properties.HORIZONTAL_FACING, ctx.getPlayer().isSneaking() ? ctx.getPlayerFacing() : ctx.getPlayerFacing().getOpposite());
     }
 
     @Override
@@ -40,7 +42,10 @@ public class Inserter extends Block {
     @Override
     public VoxelShape getOutlineShape(BlockState blockState, BlockView blockView, BlockPos blockPos, ShapeContext entityContext) {
         // Set the bounding-box
-        return VoxelShapes.cuboid(0, 0, 0, 1, (1f / 16f), 1);
+        VoxelShape belt = VoxelUtil.createCuboid(0, 0, 0, 16, 1, 16);
+        VoxelShape connector = VoxelUtil.createCuboid(2, 1, 8, 14, 10, 16);
+        VoxelShape inserter = VoxelShapes.combine(belt, connector, BooleanBiFunction.OR);
+        return VoxelUtil.rotateShape(Direction.NORTH, blockState.get(Properties.HORIZONTAL_FACING), inserter);
     }
 
     @Override
@@ -62,14 +67,14 @@ public class Inserter extends Block {
                 if (targetStack.getItem() == droppedStack.getItem()) {
                     // Can we merge the items?
                     int available = targetStack.getMaxCount() - targetStack.getCount();
-                    if (available >= droppedItems.getStack().getCount()) {
-                        targetStack.setCount(targetStack.getCount() + droppedItems.getStack().getCount());
+                    if (available >= droppedStack.getCount()) {
+                        targetStack.setCount(targetStack.getCount() + droppedStack.getCount());
                         droppedItems.remove(Entity.RemovalReason.DISCARDED);
                         targetInventory.markDirty();
                         break;
                     }
                 }else if (targetStack.isEmpty()) {
-                    targetInventory.setStack(i, droppedItems.getStack());
+                    targetInventory.setStack(i, droppedStack);
                     droppedItems.remove(Entity.RemovalReason.DISCARDED);
                     targetInventory.markDirty();
                     break;

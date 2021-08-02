@@ -9,6 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -18,6 +19,7 @@ import net.minecraft.world.World;
 import net.pattox.simpletransport.SimpleTransport;
 import net.pattox.simpletransport.entity.ExtractorEntity;
 import net.pattox.simpletransport.util.MovementUtil;
+import net.pattox.simpletransport.util.VoxelUtil;
 import org.jetbrains.annotations.Nullable;
 
 public class Extractor extends BlockWithEntity {
@@ -36,7 +38,7 @@ public class Extractor extends BlockWithEntity {
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         // When the player is sneaking, the conveyor will be placed rotated.
-        return this.getDefaultState().with(Properties.HORIZONTAL_FACING, ctx.getPlayer().isSneaking() ? ctx.getPlayerFacing().getOpposite() : ctx.getPlayerFacing());
+        return this.getDefaultState().with(Properties.HORIZONTAL_FACING, ctx.getPlayer().isSneaking() ? ctx.getPlayerFacing() : ctx.getPlayerFacing().getOpposite());
     }
 
     @Override
@@ -53,7 +55,10 @@ public class Extractor extends BlockWithEntity {
     @Override
     public VoxelShape getOutlineShape(BlockState blockState, BlockView blockView, BlockPos blockPos, ShapeContext entityContext) {
         // Set the bounding-box
-        return VoxelShapes.cuboid(0, 0, 0, 1, (1F / 16F), 1);
+        VoxelShape belt = VoxelUtil.createCuboid(0, 0, 0, 16, 1, 16);
+        VoxelShape connector = VoxelUtil.createCuboid(2, 1, 8, 14, 10, 16);
+        VoxelShape extractor = VoxelShapes.combine(belt, connector, BooleanBiFunction.OR);
+        return VoxelUtil.rotateShape(Direction.NORTH, blockState.get(Properties.HORIZONTAL_FACING), extractor);
     }
 
     @Nullable
@@ -68,10 +73,7 @@ public class Extractor extends BlockWithEntity {
         if (entity instanceof PlayerEntity) {
             return;
         }
-
         // Do the movement.
         MovementUtil.pushEntity(entity, blockPos, 1.0F / 16.0F, blockState.get(Properties.HORIZONTAL_FACING));
-
     }
-
 }

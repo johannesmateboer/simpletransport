@@ -91,7 +91,5 @@ public class ConveyorDetector extends BlockWithEntity {
     @Override
     public int getStrongRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
         return this.getWeakRedstonePower(state, world, pos, direction);
-
     }
-
 }

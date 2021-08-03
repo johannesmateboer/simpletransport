@@ -13,7 +13,7 @@
     "sources": "https://www.curseforge.com/minecraft/mc-mods/simpletransport-for-fabric"
   },
 
-  "license": "ARR",
+  "license": "MIT",
   "icon": "assets/simpletransport/conveyor.png",
 
   "environment": "*",

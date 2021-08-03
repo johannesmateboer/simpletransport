@@ -1,9 +1,9 @@
 {
 	"textures": {
-		"0": "simpletransport:conveyor",
 		"1": "simpletransport:conveyor_parts",
 		"2": "simpletransport:redstone_block",
-		"particle": "simpletransport:conveyor"
+		"3": "simpletransport:conveyor_new",
+		"particle": "simpletransport:conveyor_new"
 	},
 	"elements": [
 		{
@@ -14,7 +14,7 @@
 				"east": {"uv": [0, 0, 16, 1], "texture": "#1"},
 				"south": {"uv": [0, 0, 16, 1], "texture": "#1"},
 				"west": {"uv": [0, 0, 16, 1], "texture": "#1"},
-				"up": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#3"},
 				"down": {"uv": [0, 0, 16, 16], "texture": "#1"}
 			}
 		},

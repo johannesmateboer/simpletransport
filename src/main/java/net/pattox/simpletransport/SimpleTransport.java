@@ -48,7 +48,7 @@ public class SimpleTransport implements ModInitializer {
 	// Set the ItemGroup
 	public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.create(
 					new Identifier(MOD_ID, "general"))
-			.icon(() -> new ItemStack(Blocks.CHEST))
+			.icon(() -> new ItemStack(SimpleTransport.CONVEYOR))
 			.build();
 
 	static {

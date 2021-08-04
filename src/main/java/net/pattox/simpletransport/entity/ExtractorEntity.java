@@ -45,7 +45,7 @@ public class ExtractorEntity extends BlockEntity implements BlockEntityClientSer
                         continue;
                     }
 
-                    if (!targetStack.isEmpty()) {
+                    if (!targetStack.isEmpty() && blockEntity.isAllowedByFilter(targetStack)) {
                         ItemStack droppableStack = targetInventory.getStack(i);
                         ItemSpawner.spawnOnBelt(world, pos, droppableStack);
                         targetInventory.removeStack(i);
@@ -105,6 +105,21 @@ public class ExtractorEntity extends BlockEntity implements BlockEntityClientSer
 
     public Integer getFilterAmount() {
         return filterAmount;
+    }
+
+    public boolean hasFilter() {
+        return !Objects.equals(this.filterItem, "");
+    }
+
+    public boolean isAllowedByFilter(ItemStack stack) {
+        if (!hasFilter()) {
+            return true;
+        }
+
+        if (Objects.equals(stack.getItem().getTranslationKey(), getFilterItem())) {
+            return true;
+        }
+        return false;
     }
 
     public void setFilterAmount(Integer filterAmount) {

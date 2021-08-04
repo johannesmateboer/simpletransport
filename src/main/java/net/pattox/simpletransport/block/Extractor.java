@@ -108,7 +108,7 @@ public class Extractor extends BlockWithEntity {
         if (ee.getEditmode() && !player.getStackInHand(hand).isEmpty()) {
             ee.setFilterItem(player.getStackInHand(hand).getItem().getTranslationKey());
             ee.setFilterAmount(player.getStackInHand(hand).getCount());
-            sendInfo(world, player, "Filter set to " + ee.getFilterItem() + " with amount " + ee.getFilterAmount());
+            sendInfo(world, player, "Filter set to " + ee.getFilterItem());
             return ActionResult.SUCCESS;
         }
 

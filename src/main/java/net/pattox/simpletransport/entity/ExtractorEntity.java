@@ -1,10 +1,13 @@
 package net.pattox.simpletransport.entity;
 
+import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -12,9 +15,14 @@ import net.minecraft.world.World;
 import net.pattox.simpletransport.SimpleTransport;
 import net.pattox.simpletransport.util.ItemSpawner;
 
-public class ExtractorEntity extends BlockEntity {
+import java.util.Objects;
+
+public class ExtractorEntity extends BlockEntity implements BlockEntityClientSerializable {
 
     private int interval = 0;
+    private String filterItem = "";
+    private Integer filterAmount = 1;
+    private Boolean editMode = false;
 
     public ExtractorEntity(BlockPos pos, BlockState state) {
         super(SimpleTransport.EXTRACTOR_ENTITY, pos, state);
@@ -51,4 +59,72 @@ public class ExtractorEntity extends BlockEntity {
             blockEntity.interval = blockEntity.interval + 1;
         }
     }
+
+    @Override
+    public void readNbt(NbtCompound compoundTag) {
+        super.readNbt(compoundTag);
+        filterItem = compoundTag.getString("filterItem");
+        editMode = compoundTag.getBoolean("editmode");
+    }
+
+    @Override
+    public NbtCompound writeNbt(NbtCompound compoundTag) {
+        compoundTag.putString("filterItem", filterItem);
+        compoundTag.putBoolean("editmode", editMode);
+        return compoundTag;
+    }
+
+    @Override
+    public void fromClientTag(NbtCompound compoundTag) {
+        readNbt(compoundTag);
+    }
+
+    @Override
+    public NbtCompound toInitialChunkDataNbt() {
+        return writeNbt(new NbtCompound());
+    }
+
+    @Override
+    public NbtCompound toClientTag(NbtCompound compoundTag) {
+        return writeNbt(compoundTag);
+    }
+
+    public String getFilterItem() {
+        return filterItem;
+    }
+
+    public void setFilterItem(String filterItem) {
+        this.filterItem = filterItem;
+        markDirty();
+    }
+
+    public void clearFilterItem() {
+        this.filterItem = "";
+        markDirty();
+    }
+
+    public Integer getFilterAmount() {
+        return filterAmount;
+    }
+
+    public void setFilterAmount(Integer filterAmount) {
+        this.filterAmount = filterAmount;
+        markDirty();
+    }
+
+    public void disableEditmode() {
+        this.editMode = false;
+        markDirty();
+    }
+
+    public void enableEditmode() {
+        this.editMode = true;
+        markDirty();
+    }
+
+    public Boolean getEditmode() {
+        return Objects.requireNonNullElse(this.editMode, false);
+    }
+
+
 }

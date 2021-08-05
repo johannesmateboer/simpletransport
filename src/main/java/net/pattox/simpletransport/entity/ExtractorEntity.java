@@ -20,9 +20,9 @@ import java.util.Objects;
 public class ExtractorEntity extends BlockEntity implements BlockEntityClientSerializable {
 
     private int interval = 0;
-    private String filterItem = "";
-    private Integer filterAmount = 1;
-    private Boolean editMode = false;
+    private String filterItem;
+    private Integer filterAmount;
+    private Boolean editMode;
 
     public ExtractorEntity(BlockPos pos, BlockState state) {
         super(SimpleTransport.EXTRACTOR_ENTITY, pos, state);
@@ -77,11 +77,6 @@ public class ExtractorEntity extends BlockEntity implements BlockEntityClientSer
     @Override
     public void fromClientTag(NbtCompound compoundTag) {
         readNbt(compoundTag);
-    }
-
-    @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return writeNbt(new NbtCompound());
     }
 
     @Override

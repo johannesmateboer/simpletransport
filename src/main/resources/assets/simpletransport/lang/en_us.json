@@ -9,5 +9,7 @@
   "block.simpletransport.inserter" : "Inserter",
   "block.simpletransport.inserter.tooltip" : "Inserts items dropped in front of it in an attached inventory.",
   "block.simpletransport.destructor" : "Destructor",
-  "block.simpletransport.destructor.tooltip" : "Destroys items."
+  "block.simpletransport.destructor.tooltip" : "Destroys items.",
+  "block.simpletransport.puller" : "Puller",
+  "block.simpletransport.puller.tooltip" : "Pulls items in front of it and drops it on the other side."
 }

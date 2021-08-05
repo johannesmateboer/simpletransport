@@ -17,6 +17,7 @@ import net.pattox.simpletransport.block.*;
 import net.pattox.simpletransport.entity.ConveyorDetectorEntity;
 import net.pattox.simpletransport.entity.ConveyorEntity;
 import net.pattox.simpletransport.entity.ExtractorEntity;
+import net.pattox.simpletransport.entity.PullerEntity;
 
 public class SimpleTransport implements ModInitializer {
 
@@ -45,6 +46,11 @@ public class SimpleTransport implements ModInitializer {
 	public static final BlockItem DESTRUCTOR_ITEM;
 	public static final Identifier DESTRUCTOR_IDENTIFIER = new Identifier(MOD_ID, "destructor");
 
+	public static final Block PULLER;
+	public static final BlockItem PULLER_ITEM;
+	public static BlockEntityType<PullerEntity> PULLER_ENTITY;
+	public static final Identifier PULLER_IDENTIFIER = new Identifier(MOD_ID, "puller");
+
 	// Set the ItemGroup
 	public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.create(
 					new Identifier(MOD_ID, "general"))
@@ -69,6 +75,10 @@ public class SimpleTransport implements ModInitializer {
 
 		DESTRUCTOR = Registry.register(Registry.BLOCK, DESTRUCTOR_IDENTIFIER, new Destructor(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
 		DESTRUCTOR_ITEM = Registry.register(Registry.ITEM, DESTRUCTOR_IDENTIFIER, new BlockItem(DESTRUCTOR, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
+
+		PULLER = Registry.register(Registry.BLOCK, PULLER_IDENTIFIER, new Puller(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
+		PULLER_ITEM = Registry.register(Registry.ITEM, PULLER_IDENTIFIER, new BlockItem(PULLER, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
+		PULLER_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, PULLER_IDENTIFIER, FabricBlockEntityTypeBuilder.create(PullerEntity::new, PULLER).build(null));
 
 	}
 

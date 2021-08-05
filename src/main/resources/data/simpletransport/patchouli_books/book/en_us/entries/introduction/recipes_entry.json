@@ -33,6 +33,11 @@
       "type": "patchouli:crafting",
       "recipe": "simpletransport:destructor",
       "title": "Destructor"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simpletransport:puller",
+      "title": "Puller"
     }
   ],
   "sortnum": 2

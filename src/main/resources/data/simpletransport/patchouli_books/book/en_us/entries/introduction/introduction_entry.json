@@ -36,6 +36,12 @@
       "item": "simpletransport:destructor",
       "title": "Destructor",
       "text": "Sometimes you have too much of something. Transport them to the destructor and they will be deleted."
+    },
+    {
+      "type": "spotlight",
+      "item": "simpletransport:puller",
+      "title": "Puller",
+      "text": "Moving items between belts can be done with the Puller. Items in front of it will be moved to the other side if the filter of the machine allows it."
     }
   ],
   "sortnum": 1

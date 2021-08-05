@@ -1,0 +1,42 @@
+{
+  "name": "Introduction",
+  "icon": "simpletransport:destructor",
+  "category": "simpletransport:general",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "SimpleTransport is a mod that adds conveyor-belts and extra items to build advanced transport-systems."
+    },
+    {
+      "type": "spotlight",
+      "item": "simpletransport:conveyor",
+      "title": "Conveyor",
+      "text": "This is the basic Conveyor. It moves items from one side to the other."
+    },
+    {
+      "type": "spotlight",
+      "item": "simpletransport:conveyor_detector",
+      "title": "Conveyor-detecor",
+      "text": "When an item passes over this belt, a redstone-signal is emitted."
+    },
+    {
+      "type": "spotlight",
+      "item": "simpletransport:extractor",
+      "title": "Extractor",
+      "text": "To extract items from a chest or machine, you use this thing."
+    },
+    {
+      "type": "spotlight",
+      "item": "simpletransport:inserter",
+      "title": "Inserter",
+      "text": "This is the basic Inserter. It sucks up items in front of it, and puts it in a connected chest or machine."
+    },
+    {
+      "type": "spotlight",
+      "item": "simpletransport:destructor",
+      "title": "Destructor",
+      "text": "Sometimes you have too much of something. Transport them to the destructor and they will be deleted."
+    }
+  ],
+  "sortnum": 1
+}

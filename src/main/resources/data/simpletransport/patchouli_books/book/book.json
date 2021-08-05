@@ -1,0 +1,6 @@
+{
+  "name": "SimpleTransport",
+  "landing_text": "Hello $(playername)!$(br2)Thank you for buying SimpleTransport items! All your transport-needs are solved! To get you started, this guidebook will help you.",
+  "version": 1,
+  "show_progress": false
+}

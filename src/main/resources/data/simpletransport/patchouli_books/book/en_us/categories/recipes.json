@@ -1,0 +1,6 @@
+{
+  "name": "Crafting recipes",
+  "description": "This category contains the recipes for the SimpleTransport items.",
+  "icon": "simpletransport:inserter",
+  "sortnum": 2
+}

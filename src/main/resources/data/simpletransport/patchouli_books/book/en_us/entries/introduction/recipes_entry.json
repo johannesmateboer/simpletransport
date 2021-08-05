@@ -1,0 +1,39 @@
+{
+  "name": "Recipes",
+  "icon": "simpletransport:destructor",
+  "category": "simpletransport:recipes",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The following pages show you the recipes of the SimpleTransport-items. You can also use REI to view these."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simpletransport:conveyor",
+      "title": "Conveyor"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simpletransport:conveyor_detector",
+      "title": "Conveyor-detecor"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simpletransport:extractor",
+      "recipe2": "simpletransport:inserter_to_extractor",
+      "title": "Extractor"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simpletransport:inserter",
+      "recipe2": "simpletransport:extractor_to_inserter",
+      "title": "Inserter"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simpletransport:destructor",
+      "title": "Destructor"
+    }
+  ],
+  "sortnum": 2
+}

@@ -19,8 +19,8 @@ import java.util.Objects;
 
 public class PullerEntity extends BlockEntity implements BlockEntityClientSerializable {
     private int interval = 0;
-    private String filterItem;
-    private Boolean editMode;
+    private String filterItem = "";
+    private Boolean editMode = false;
 
     public PullerEntity(BlockPos pos, BlockState state) {
         super(SimpleTransport.PULLER_ENTITY, pos, state);
@@ -52,7 +52,7 @@ public class PullerEntity extends BlockEntity implements BlockEntityClientSerial
     }
 
     public boolean hasFilter() {
-        return !Objects.equals(this.filterItem, "");
+        return !Objects.equals(filterItem, "");
     }
 
     public boolean isAllowedByFilter(ItemStack stack) {
@@ -104,6 +104,7 @@ public class PullerEntity extends BlockEntity implements BlockEntityClientSerial
 
     @Override
     public NbtCompound writeNbt(NbtCompound compoundTag) {
+        super.writeNbt(compoundTag);
         compoundTag.putString("filterItem", filterItem);
         compoundTag.putBoolean("editmode", editMode);
         return compoundTag;

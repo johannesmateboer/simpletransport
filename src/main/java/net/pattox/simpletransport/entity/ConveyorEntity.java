@@ -24,7 +24,7 @@ public class ConveyorEntity extends BlockEntity {
         }
         List<Entity> entities = world.getOtherEntities(null, new Box(pos));
         for (Entity entity : entities) {
-            MovementUtil.pushEntity(entity, pos, 1.0F / 16.0F, state.get(Properties.HORIZONTAL_FACING));
+            MovementUtil.pushEntity(entity, pos, 0.5F / 16.0F, state.get(Properties.HORIZONTAL_FACING));
         }
     }
 }

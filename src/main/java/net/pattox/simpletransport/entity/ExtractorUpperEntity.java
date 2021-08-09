@@ -5,7 +5,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.state.property.Properties;
@@ -17,37 +16,36 @@ import net.pattox.simpletransport.util.ItemSpawner;
 
 import java.util.Objects;
 
-public class ExtractorEntity extends BlockEntity implements BlockEntityClientSerializable {
+public class ExtractorUpperEntity extends BlockEntity implements BlockEntityClientSerializable {
 
     private int interval = 0;
     private String filterItem = "";
     private Integer filterAmount = 1;
     private Boolean editMode = false;
 
-    public ExtractorEntity(BlockPos pos, BlockState state) {
-        super(SimpleTransport.EXTRACTOR_ENTITY, pos, state);
+    public ExtractorUpperEntity(BlockPos pos, BlockState state) {
+        super(SimpleTransport.EXTRACTOR_UPPER_ENTITY, pos, state);
     }
 
-    public static void tick(World world, BlockPos pos, BlockState state, ExtractorEntity blockEntity) {
+    public static void tick(World world, BlockPos pos, BlockState state, ExtractorUpperEntity blockEntity) {
         if (world.isClient()) {
             return;
         }
         if (blockEntity.interval > 30) {
-            Direction direction = blockEntity.getCachedState().get(Properties.HORIZONTAL_FACING);
 
             // Is there something like and inventory on the other side?
-            if (world.getBlockEntity(pos.offset(direction.getOpposite())) instanceof Inventory) {
-                Inventory targetInventory = (Inventory) world.getBlockEntity(pos.offset(direction.getOpposite()));
+            if (world.getBlockEntity(pos.offset(Direction.UP)) instanceof Inventory) {
+                Inventory targetInventory = (Inventory) world.getBlockEntity(pos.offset(Direction.UP));
                 // Iterate over the slots in the target-inventory and drop things when its not empty.
                 for (int i = 0; i < targetInventory.size(); i++) {
                     ItemStack targetStack = targetInventory.getStack(i);
-                    if (targetInventory instanceof SidedInventory && !((SidedInventory) targetInventory).canExtract(i, targetStack, direction)) {
+                    if (targetInventory instanceof SidedInventory && !((SidedInventory) targetInventory).canExtract(i, targetStack, Direction.DOWN)) {
                         continue;
                     }
 
                     if (!targetStack.isEmpty() && blockEntity.isAllowedByFilter(targetStack)) {
                         ItemStack droppableStack = targetInventory.getStack(i);
-                        ItemSpawner.spawnOnBelt(world, pos, droppableStack);
+                        ItemSpawner.spawnOnBelt(world, pos.offset(state.get(Properties.HORIZONTAL_FACING)), droppableStack);
                         targetInventory.removeStack(i);
                         targetInventory.markDirty();
                         break;

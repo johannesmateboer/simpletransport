@@ -28,7 +28,7 @@ public class ConveyorDetectorEntity extends BlockEntity {
             world.setBlockState(pos, state.with(Properties.POWER, 15));
 
             for (Entity entity : entities) {
-                MovementUtil.pushEntity(entity, pos, 1.0F / 16.0F, state.get(Properties.HORIZONTAL_FACING));
+                MovementUtil.pushEntity(entity, pos, 0.5F / 16.0F, state.get(Properties.HORIZONTAL_FACING));
             }
         } else {
             world.setBlockState(pos, state.with(Properties.POWERED, false));

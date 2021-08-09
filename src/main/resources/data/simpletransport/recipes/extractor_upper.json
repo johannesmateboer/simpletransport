@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CLC",
+    "CHS",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:cobblestone"
+    },
+    "L": {
+      "item": "minecraft:hopper"
+    },
+    "H": {
+      "item": "minecraft:chest"
+    },
+    "S": {
+      "item": "simpletransport:conveyor"
+    }
+  },
+  "result": {
+    "item": "simpletransport:extractor_upper",
+    "count": 1
+  }
+}

@@ -14,10 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.pattox.simpletransport.block.*;
-import net.pattox.simpletransport.entity.ConveyorDetectorEntity;
-import net.pattox.simpletransport.entity.ConveyorEntity;
-import net.pattox.simpletransport.entity.ExtractorEntity;
-import net.pattox.simpletransport.entity.PullerEntity;
+import net.pattox.simpletransport.entity.*;
 
 public class SimpleTransport implements ModInitializer {
 
@@ -32,6 +29,11 @@ public class SimpleTransport implements ModInitializer {
 	public static final BlockItem EXTRACTOR_ITEM;
 	public static BlockEntityType<ExtractorEntity> EXTRACTOR_ENTITY;
 	public static final Identifier EXTRACTOR_IDENTIFIER = new Identifier(MOD_ID, "extractor");
+
+	public static final Block EXTRACTOR_UPPER;
+	public static final BlockItem EXTRACTOR_UPPER_ITEM;
+	public static BlockEntityType<ExtractorUpperEntity> EXTRACTOR_UPPER_ENTITY;
+	public static final Identifier EXTRACTOR_UPPER_IDENTIFIER = new Identifier(MOD_ID, "extractor_upper");
 
 	public static final Block CONVEYOR_DETECTOR;
 	public static final BlockItem CONVEYOR_DETECTOR_ITEM;
@@ -69,6 +71,10 @@ public class SimpleTransport implements ModInitializer {
 		EXTRACTOR = Registry.register(Registry.BLOCK, EXTRACTOR_IDENTIFIER, new Extractor(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
 		EXTRACTOR_ITEM = Registry.register(Registry.ITEM, EXTRACTOR_IDENTIFIER, new BlockItem(EXTRACTOR, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
 		EXTRACTOR_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, EXTRACTOR_IDENTIFIER, FabricBlockEntityTypeBuilder.create(ExtractorEntity::new, EXTRACTOR).build(null));
+
+		EXTRACTOR_UPPER = Registry.register(Registry.BLOCK, EXTRACTOR_UPPER_IDENTIFIER, new ExtractorUpper(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
+		EXTRACTOR_UPPER_ITEM = Registry.register(Registry.ITEM, EXTRACTOR_UPPER_IDENTIFIER, new BlockItem(EXTRACTOR_UPPER, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
+		EXTRACTOR_UPPER_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, EXTRACTOR_UPPER_IDENTIFIER, FabricBlockEntityTypeBuilder.create(ExtractorUpperEntity::new, EXTRACTOR_UPPER).build(null));
 
 		INSERTER = Registry.register(Registry.BLOCK, INSERTER_IDENTIFIER, new Inserter(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque()));
 		INSERTER_ITEM = Registry.register(Registry.ITEM, INSERTER_IDENTIFIER, new BlockItem(INSERTER, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));

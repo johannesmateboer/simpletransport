@@ -25,6 +25,11 @@
     },
     {
       "type": "patchouli:crafting",
+      "recipe": "simpletransport:extractor_upper",
+      "title": "Upper Extractor"
+    },
+    {
+      "type": "patchouli:crafting",
       "recipe": "simpletransport:inserter",
       "recipe2": "simpletransport:extractor_to_inserter",
       "title": "Inserter"

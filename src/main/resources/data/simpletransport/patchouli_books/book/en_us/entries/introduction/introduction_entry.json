@@ -27,6 +27,12 @@
     },
     {
       "type": "spotlight",
+      "item": "simpletransport:extractor_upper",
+      "title": "Upper Extractor",
+      "text": "To extract items from a chest or machine above the extractor, you use this thing."
+    },
+    {
+      "type": "spotlight",
       "item": "simpletransport:inserter",
       "title": "Inserter",
       "text": "This is the basic Inserter. It sucks up items in front of it, and puts it in a connected chest or machine."

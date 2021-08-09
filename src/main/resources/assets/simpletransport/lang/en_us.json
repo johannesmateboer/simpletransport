@@ -6,6 +6,8 @@
   "block.simpletransport.conveyor_detector.tooltip" : "Emits a redstone signal when items are conveyed.",
   "block.simpletransport.extractor" : "Extractor",
   "block.simpletransport.extractor.tooltip" : "Pulls items from an inventory and drops them on the belt.",
+  "block.simpletransport.extractor_upper" : "Upper Extractor",
+  "block.simpletransport.extractor_upper.tooltip" : "Pulls items from an inventory above it and drops them on the belt.",
   "block.simpletransport.inserter" : "Inserter",
   "block.simpletransport.inserter.tooltip" : "Inserts items dropped in front of it in an attached inventory.",
   "block.simpletransport.destructor" : "Destructor",

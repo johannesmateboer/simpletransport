@@ -1,4 +1,5 @@
 {
+	"credit": "Made with Blockbench",
 	"textures": {
 		"1": "simpletransport:conveyor_parts",
 		"2": "simpletransport:redstone_block",
@@ -60,10 +61,18 @@
 			"translation": [3.75, 3.5, 0],
 			"scale": [0.5, 0.5, 0.5]
 		},
+		"ground": {
+			"translation": [0, 1.25, 0],
+			"scale": [0.7, 0.7, 0.7]
+		},
 		"gui": {
 			"rotation": [45, 45, 0],
 			"translation": [0, 3.25, 0],
 			"scale": [0.7, 0.7, 0.7]
+		},
+		"fixed": {
+			"rotation": [-90, 0, 0],
+			"translation": [0, 0, -7.5]
 		}
 	}
 }

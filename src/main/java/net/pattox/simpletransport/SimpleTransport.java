@@ -65,6 +65,12 @@ public class SimpleTransport implements ModInitializer {
 	public static BlockEntityType<VactractorEntity> VACTRACTOR_ENTITY;
 	public static final Identifier VACTRACTOR_IDENTIFIER = new Identifier(MOD_ID, "vactractor");
 
+	public static final Block INSERTER_UPPER;
+	public static final BlockItem INSERTER_UPPER_ITEM;
+	public static BlockEntityType<InserterUpperEntity> INSERTER_UPPER_ENTITY;
+	public static final Identifier INSERTER_UPPER_IDENTIFIER = new Identifier(MOD_ID, "inserter_upper");
+	public static final ScreenHandlerType<GenericFilterScreenHandler> INSERTER_UPPER_SCREEN_HANDLER;
+
 	// Set the ItemGroup
 	public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.create(
 					new Identifier(MOD_ID, "general"))
@@ -100,6 +106,11 @@ public class SimpleTransport implements ModInitializer {
 		PULLER_ITEM = Registry.register(Registry.ITEM, PULLER_IDENTIFIER, new BlockItem(PULLER, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
 		PULLER_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, PULLER_IDENTIFIER, FabricBlockEntityTypeBuilder.create(PullerEntity::new, PULLER).build(null));
 		PULLER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(PULLER_IDENTIFIER, GenericFilterScreenHandler::new);
+
+		INSERTER_UPPER = Registry.register(Registry.BLOCK, INSERTER_UPPER_IDENTIFIER, new InserterUpper(getBlockSettings(INSERTER_UPPER_IDENTIFIER)));
+		INSERTER_UPPER_ITEM = Registry.register(Registry.ITEM, INSERTER_UPPER_IDENTIFIER, new BlockItem(INSERTER_UPPER, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
+		INSERTER_UPPER_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, INSERTER_UPPER_IDENTIFIER, FabricBlockEntityTypeBuilder.create(InserterUpperEntity::new, INSERTER_UPPER).build(null));
+		INSERTER_UPPER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(INSERTER_UPPER_IDENTIFIER, GenericFilterScreenHandler::new);
 
 		VACTRACTOR = Registry.register(Registry.BLOCK, VACTRACTOR_IDENTIFIER, new Vactractor(getBlockSettings(VACTRACTOR_IDENTIFIER)));
 		VACTRACTOR_ITEM = Registry.register(Registry.ITEM, VACTRACTOR_IDENTIFIER, new BlockItem(VACTRACTOR, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));

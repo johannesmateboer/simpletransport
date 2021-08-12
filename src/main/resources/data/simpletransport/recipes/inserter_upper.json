@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CCC",
-    "RHR",
+    "CRC",
+    "RHC",
     "CCC"
   ],
   "key": {
@@ -17,7 +17,7 @@
     }
   },
   "result": {
-    "item": "simpletransport:puller",
+    "item": "simpletransport:inserter_upper",
     "count": 1
   }
 }

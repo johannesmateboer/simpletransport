@@ -37,7 +37,7 @@ public class VactractorEntity extends BlockEntity {
                 for (Entity entity : entities) {
                     if (entity instanceof ItemEntity) {
                         ItemStack stack = ((ItemEntity) entity).getStack();
-                        ItemSpawner.spawnOnBelt(world, targetPos, stack);
+                        ItemSpawner.insertOrDrop(world, targetPos, stack);
                         entity.remove(Entity.RemovalReason.DISCARDED);
                     }
                 }

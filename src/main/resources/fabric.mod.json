@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "SimpleTransport",
-  "description": "SimpleTransport is a mod that brings very simple conveyer-belts, and other related transport-contraptions.",
+  "description": "SimpleTransport is a mod that brings very simple conveyor-belts, and other related transport-contraptions.",
   "authors": [
     "John Pattox"
   ],
@@ -13,7 +13,7 @@
     "sources": "https://www.curseforge.com/minecraft/mc-mods/simpletransport-for-fabric"
   },
 
-  "license": "MIT",
+  "license": "ARR",
   "icon": "assets/simpletransport/conveyor.png",
 
   "environment": "*",

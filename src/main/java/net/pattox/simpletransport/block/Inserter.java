@@ -18,8 +18,10 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.pattox.simpletransport.util.InventoryUtil;
 import net.pattox.simpletransport.util.VoxelUtil;
 
+@SuppressWarnings("deprecation")
 public class Inserter extends Block {
 
     public Inserter(Settings settings) {
@@ -58,27 +60,8 @@ public class Inserter extends Block {
         Direction direction = state.get(Properties.HORIZONTAL_FACING);
 
         if (world.getBlockEntity(pos.offset(direction.getOpposite())) instanceof Inventory targetInventory) {
-
-            for (int i = 0; i < targetInventory.size(); i++) {
-                ItemStack targetStack = targetInventory.getStack(i);
-                if (targetInventory instanceof SidedInventory && !((SidedInventory) targetInventory).canInsert(i, targetStack, direction)) {
-                    continue;
-                }
-                if (targetStack.getItem() == droppedStack.getItem()) {
-                    // Can we merge the items?
-                    int available = targetStack.getMaxCount() - targetStack.getCount();
-                    if (available >= droppedStack.getCount()) {
-                        targetStack.setCount(targetStack.getCount() + droppedStack.getCount());
-                        droppedItems.remove(Entity.RemovalReason.DISCARDED);
-                        targetInventory.markDirty();
-                        break;
-                    }
-                }else if (targetStack.isEmpty()) {
-                    targetInventory.setStack(i, droppedStack);
-                    droppedItems.remove(Entity.RemovalReason.DISCARDED);
-                    targetInventory.markDirty();
-                    break;
-                }
+            if (InventoryUtil.insertOrMerge(droppedStack, targetInventory, direction)) {
+                droppedItems.remove(Entity.RemovalReason.DISCARDED);
             }
         }
     }

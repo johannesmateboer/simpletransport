@@ -53,7 +53,7 @@
       "type": "spotlight",
       "item": "simpletransport:vactractor",
       "title": "Vactractor",
-      "text": "Pulls items in a 4 x 4 area above it, and drops it below the vactractor. It does not connect to an inventory! Put a belt below it."
+      "text": "Pulls items in a 4 x 4 area above it, and drops it below the vactractor. If an inventory is below it, it will try to insert it."
     }
   ],
   "sortnum": 1

@@ -48,6 +48,12 @@
       "item": "simpletransport:puller",
       "title": "Puller",
       "text": "Moving items between belts can be done with the Puller. Items in front of it will be moved to the other side if the filter of the machine allows it."
+    },
+    {
+      "type": "spotlight",
+      "item": "simpletransport:vactractor",
+      "title": "Vactractor",
+      "text": "Pulls items in a 4 x 4 area above it, and drops it below the vactractor. It does not connect to an inventory! Put a belt below it."
     }
   ],
   "sortnum": 1

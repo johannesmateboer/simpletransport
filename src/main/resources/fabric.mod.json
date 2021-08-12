@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "net.pattox.simpletransport.SimpleTransport"
+    ],
+    "client": [
+      "net.pattox.simpletransport.SimpleTransportClient"
     ]
   },
   "mixins": [

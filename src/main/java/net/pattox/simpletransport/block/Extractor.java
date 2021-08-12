@@ -7,6 +7,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
@@ -26,8 +27,6 @@ import net.pattox.simpletransport.entity.ExtractorEntity;
 import net.pattox.simpletransport.util.MovementUtil;
 import net.pattox.simpletransport.util.VoxelUtil;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Objects;
 
 public class Extractor extends BlockWithEntity {
 
@@ -88,52 +87,16 @@ public class Extractor extends BlockWithEntity {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        ExtractorEntity ee = (ExtractorEntity) world.getBlockEntity(pos);
-        assert ee != null;
+        if (!world.isClient) {
+            //This will call the createScreenHandlerFactory method from BlockWithEntity, which will return our blockEntity casted to
+            //a namedScreenHandlerFactory. If your block class does not extend BlockWithEntity, it needs to implement createScreenHandlerFactory.
+            NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
 
-        sendInfo(world, player, player.getStackInHand(hand).getItem().getTranslationKey());
-
-        if (Objects.equals(player.getStackInHand(hand).getItem().getTranslationKey(), "block.minecraft.redstone_torch")) {
-            // Toggle editmode
-            if (!ee.getEditmode()) {
-                ee.enableEditmode();
-                sendInfo(world, player, "Filter-editmode active! You can make your changes now.");
-            } else {
-                ee.disableEditmode();
-                sendInfo(world, player, "Filter-editmode ended! Your changes have been saved.");
-            }
-            return ActionResult.SUCCESS;
-        }
-
-        if (ee.getEditmode() && !player.getStackInHand(hand).isEmpty()) {
-            ee.setFilterItem(player.getStackInHand(hand).getItem().getTranslationKey());
-            ee.setFilterAmount(player.getStackInHand(hand).getCount());
-            sendInfo(world, player, "Filter set to " + ee.getFilterItem());
-            return ActionResult.SUCCESS;
-        }
-
-        if (ee.getEditmode() && player.getStackInHand(hand).isEmpty()) {
-            ee.clearFilterItem();
-            sendInfo(world, player, "Filter cleared. Extracting everything.");
-            return ActionResult.SUCCESS;
-        }
-
-        if (ee.getEditmode()) {
-            sendInfo(world, player, "Edit-mode active!");
-        } else {
-            sendInfo(world, player, "Edit-mode inactive.");
-            if (!Objects.equals(ee.getFilterItem(), "")) {
-                sendInfo(world, player, "Filtering " + ee.getFilterItem());
-            }else{
-                sendInfo(world,player,"Extracting all items");
+            if (screenHandlerFactory != null) {
+                //With this call the server will request the client to open the appropriate Screenhandler
+                player.openHandledScreen(screenHandlerFactory);
             }
         }
         return ActionResult.SUCCESS;
-    }
-
-    private void sendInfo(World world, PlayerEntity player, String message) {
-        if (world.isClient()) {
-            player.sendSystemMessage(Text.of(message), Util.NIL_UUID);
-        }
     }
 }

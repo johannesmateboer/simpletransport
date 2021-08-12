@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "simpletransport:block/vactractor"
+    },
+    "facing=east": {
+      "model": "simpletransport:block/vactractor",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "simpletransport:block/vactractor",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "simpletransport:block/vactractor",
+      "y": 270
+    }
+  }
+}

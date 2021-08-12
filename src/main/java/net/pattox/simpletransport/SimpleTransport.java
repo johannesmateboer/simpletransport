@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
@@ -12,10 +13,12 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.pattox.simpletransport.block.*;
 import net.pattox.simpletransport.entity.*;
+import net.pattox.simpletransport.gui.GenericFilterScreenHandler;
 
 public class SimpleTransport implements ModInitializer {
 
@@ -30,11 +33,13 @@ public class SimpleTransport implements ModInitializer {
 	public static final BlockItem EXTRACTOR_ITEM;
 	public static BlockEntityType<ExtractorEntity> EXTRACTOR_ENTITY;
 	public static final Identifier EXTRACTOR_IDENTIFIER = new Identifier(MOD_ID, "extractor");
+	public static final ScreenHandlerType<GenericFilterScreenHandler> EXTRACTOR_SCREEN_HANDLER;
 
 	public static final Block EXTRACTOR_UPPER;
 	public static final BlockItem EXTRACTOR_UPPER_ITEM;
 	public static BlockEntityType<ExtractorUpperEntity> EXTRACTOR_UPPER_ENTITY;
 	public static final Identifier EXTRACTOR_UPPER_IDENTIFIER = new Identifier(MOD_ID, "extractor_upper");
+	public static final ScreenHandlerType<GenericFilterScreenHandler> EXTRACTOR_UPPER_SCREEN_HANDLER;
 
 	public static final Block CONVEYOR_DETECTOR;
 	public static final BlockItem CONVEYOR_DETECTOR_ITEM;
@@ -53,6 +58,12 @@ public class SimpleTransport implements ModInitializer {
 	public static final BlockItem PULLER_ITEM;
 	public static BlockEntityType<PullerEntity> PULLER_ENTITY;
 	public static final Identifier PULLER_IDENTIFIER = new Identifier(MOD_ID, "puller");
+	public static final ScreenHandlerType<GenericFilterScreenHandler> PULLER_SCREEN_HANDLER;
+
+	public static final Block VACTRACTOR;
+	public static final BlockItem VACTRACTOR_ITEM;
+	public static BlockEntityType<VactractorEntity> VACTRACTOR_ENTITY;
+	public static final Identifier VACTRACTOR_IDENTIFIER = new Identifier(MOD_ID, "vactractor");
 
 	// Set the ItemGroup
 	public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.create(
@@ -72,10 +83,12 @@ public class SimpleTransport implements ModInitializer {
 		EXTRACTOR = Registry.register(Registry.BLOCK, EXTRACTOR_IDENTIFIER, new Extractor(getBlockSettings(EXTRACTOR_IDENTIFIER)));
 		EXTRACTOR_ITEM = Registry.register(Registry.ITEM, EXTRACTOR_IDENTIFIER, new BlockItem(EXTRACTOR, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
 		EXTRACTOR_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, EXTRACTOR_IDENTIFIER, FabricBlockEntityTypeBuilder.create(ExtractorEntity::new, EXTRACTOR).build(null));
+		EXTRACTOR_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(EXTRACTOR_IDENTIFIER, GenericFilterScreenHandler::new);
 
 		EXTRACTOR_UPPER = Registry.register(Registry.BLOCK, EXTRACTOR_UPPER_IDENTIFIER, new ExtractorUpper(getBlockSettings(EXTRACTOR_UPPER_IDENTIFIER)));
 		EXTRACTOR_UPPER_ITEM = Registry.register(Registry.ITEM, EXTRACTOR_UPPER_IDENTIFIER, new BlockItem(EXTRACTOR_UPPER, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
 		EXTRACTOR_UPPER_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, EXTRACTOR_UPPER_IDENTIFIER, FabricBlockEntityTypeBuilder.create(ExtractorUpperEntity::new, EXTRACTOR_UPPER).build(null));
+		EXTRACTOR_UPPER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(EXTRACTOR_UPPER_IDENTIFIER, GenericFilterScreenHandler::new);
 
 		INSERTER = Registry.register(Registry.BLOCK, INSERTER_IDENTIFIER, new Inserter(getBlockSettings(INSERTER_IDENTIFIER)));
 		INSERTER_ITEM = Registry.register(Registry.ITEM, INSERTER_IDENTIFIER, new BlockItem(INSERTER, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
@@ -86,6 +99,11 @@ public class SimpleTransport implements ModInitializer {
 		PULLER = Registry.register(Registry.BLOCK, PULLER_IDENTIFIER, new Puller(getBlockSettings(PULLER_IDENTIFIER)));
 		PULLER_ITEM = Registry.register(Registry.ITEM, PULLER_IDENTIFIER, new BlockItem(PULLER, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
 		PULLER_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, PULLER_IDENTIFIER, FabricBlockEntityTypeBuilder.create(PullerEntity::new, PULLER).build(null));
+		PULLER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(PULLER_IDENTIFIER, GenericFilterScreenHandler::new);
+
+		VACTRACTOR = Registry.register(Registry.BLOCK, VACTRACTOR_IDENTIFIER, new Vactractor(getBlockSettings(VACTRACTOR_IDENTIFIER)));
+		VACTRACTOR_ITEM = Registry.register(Registry.ITEM, VACTRACTOR_IDENTIFIER, new BlockItem(VACTRACTOR, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
+		VACTRACTOR_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, VACTRACTOR_IDENTIFIER, FabricBlockEntityTypeBuilder.create(VactractorEntity::new, VACTRACTOR).build(null));
 
 	}
 
@@ -95,6 +113,6 @@ public class SimpleTransport implements ModInitializer {
 	}
 
 	private static FabricBlockSettings getBlockSettings(Identifier identifier) {
-		return FabricBlockSettings.of(Material.STONE).hardness(2f).drops(identifier).nonOpaque();
+		return FabricBlockSettings.of(Material.STONE).hardness(1.5f).drops(identifier).nonOpaque();
 	}
 }

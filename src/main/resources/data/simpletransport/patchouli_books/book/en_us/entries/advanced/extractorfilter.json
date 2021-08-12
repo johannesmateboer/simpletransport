@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The extractor has filtering-capabilities. It has no GUI, so read this chapter to learn more about it!"
+      "text": "The extractor has filtering-capabilities. It has a GUI, so read this chapter to learn more about it!"
     },
     {
       "type": "spotlight",
@@ -15,11 +15,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "To enable filtering-functions, you do the following:$(br2)1. Right-click the extractor with a redstone torch.$(br)2. Right-click the extractor with the item you want to extract. $(br)3. Right-click the extractor again with a redstone-torch."
+      "text": "To enable filtering-functions, Right-click on the extractor. A GUI with 9 fields will open.$(br)If you leave it empty, everything will be extracted.$(br)If you put in items, only those items will be extracted (whitelist)."
     },
     {
       "type": "patchouli:text",
-      "text": "The extractor will notify you of each step. To put it another way: redstone-torches enable and disable settings-mode.$(br)When you right-click with an empty hand, the extractor will tell you what it's doing."
+      "text": "The amount of one itemstack is not doing anything at the moment. In a future-update it will have functionality."
     }
   ],
   "sortnum": 1

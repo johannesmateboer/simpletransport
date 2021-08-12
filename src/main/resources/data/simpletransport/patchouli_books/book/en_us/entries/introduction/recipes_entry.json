@@ -1,6 +1,6 @@
 {
   "name": "Recipes",
-  "icon": "simpletransport:destructor",
+  "icon": "simpletransport:puller",
   "category": "simpletransport:recipes",
   "pages": [
     {
@@ -43,6 +43,11 @@
       "type": "patchouli:crafting",
       "recipe": "simpletransport:puller",
       "title": "Puller"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simpletransport:vactractor",
+      "title": "Vactractor"
     }
   ],
   "sortnum": 2

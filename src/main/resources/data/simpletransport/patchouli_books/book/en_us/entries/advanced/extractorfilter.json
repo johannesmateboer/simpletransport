@@ -20,6 +20,16 @@
     {
       "type": "patchouli:text",
       "text": "The amount of one itemstack is not doing anything at the moment. In a future-update it will have functionality."
+    },
+    {
+      "type": "spotlight",
+      "item": "simpletransport:opi",
+      "title": "OPI",
+      "text": "Overflow Protected Inserter"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The OPI is placed on the side of a belt. The belt should NOT point towards the OPI.$(br)This way, the OPI can decide to take or leave the item."
     }
   ],
   "sortnum": 1

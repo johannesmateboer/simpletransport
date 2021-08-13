@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "RHR",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:cobblestone"
+    },
+    "R": {
+      "item": "minecraft:redstone_torch"
+    },
+    "H": {
+      "tag": "minecraft:hopper"
+    }
+  },
+  "result": {
+    "item": "simpletransport:opi",
+    "count": 1
+  }
+}

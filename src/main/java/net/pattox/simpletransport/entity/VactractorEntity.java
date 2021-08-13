@@ -31,7 +31,7 @@ public class VactractorEntity extends BlockEntity {
             //Target is below
             BlockPos targetPos = pos.offset(Direction.DOWN);
 
-            for (BlockPos loc:  BlockPos.iterateInSquare(pos.up(), 2, Direction.NORTH, Direction.EAST)) {
+            for (BlockPos loc:  BlockPos.iterateInSquare(pos.up(), 3, Direction.NORTH, Direction.EAST)) {
                 List<Entity> entities = world.getOtherEntities(null, new Box(loc));
                 // Iterate over the entities
                 for (Entity entity : entities) {

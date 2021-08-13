@@ -51,6 +51,12 @@
     },
     {
       "type": "spotlight",
+      "item": "simpletransport:opi",
+      "title": "OPI",
+      "text": "The OPI (Overflow-Protected Inserter) is like the puller, but connects to an Inventory. If the Inventory has space, the OPI will insert.$(br)If the inventory cannot accept the item, the OPI will leave it."
+    },
+    {
+      "type": "spotlight",
       "item": "simpletransport:vactractor",
       "title": "Vactractor",
       "text": "Pulls items in a 4 x 4 area above it, and drops it below the vactractor. If an inventory is below it, it will try to insert it."

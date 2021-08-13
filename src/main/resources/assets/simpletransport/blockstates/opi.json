@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "simpletransport:block/opi"
+    },
+    "facing=east": {
+      "model": "simpletransport:block/opi",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "simpletransport:block/opi",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "simpletransport:block/opi",
+      "y": 270
+    }
+  }
+}

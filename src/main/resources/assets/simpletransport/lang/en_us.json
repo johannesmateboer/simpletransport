@@ -16,6 +16,8 @@
   "block.simpletransport.destructor.tooltip" : "Destroys items.",
   "block.simpletransport.puller" : "Puller",
   "block.simpletransport.puller.tooltip" : "Pulls items in front of it and drops it on the other side.",
+  "block.simpletransport.opi" : "Overflow-Protected-Inserter (OPI)",
+  "block.simpletransport.opi.tooltip" : "Pulls items from the belt and inserts them only if possible. Has filter.",
   "block.simpletransport.vactractor" : "Vactractor",
   "block.simpletransport.vactractor.tooltip" : "Pulls items above it in a 4 by 4 area."
 }

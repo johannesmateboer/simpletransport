@@ -71,6 +71,12 @@ public class SimpleTransport implements ModInitializer {
 	public static final Identifier INSERTER_UPPER_IDENTIFIER = new Identifier(MOD_ID, "inserter_upper");
 	public static final ScreenHandlerType<GenericFilterScreenHandler> INSERTER_UPPER_SCREEN_HANDLER;
 
+	public static final Block OPI;
+	public static final BlockItem OPI_ITEM;
+	public static BlockEntityType<OpiEntity> OPI_ENTITY;
+	public static final Identifier OPI_IDENTIFIER = new Identifier(MOD_ID, "opi");
+	public static final ScreenHandlerType<GenericFilterScreenHandler> OPI_SCREEN_HANDLER;
+
 	// Set the ItemGroup
 	public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.create(
 					new Identifier(MOD_ID, "general"))
@@ -111,6 +117,11 @@ public class SimpleTransport implements ModInitializer {
 		INSERTER_UPPER_ITEM = Registry.register(Registry.ITEM, INSERTER_UPPER_IDENTIFIER, new BlockItem(INSERTER_UPPER, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
 		INSERTER_UPPER_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, INSERTER_UPPER_IDENTIFIER, FabricBlockEntityTypeBuilder.create(InserterUpperEntity::new, INSERTER_UPPER).build(null));
 		INSERTER_UPPER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(INSERTER_UPPER_IDENTIFIER, GenericFilterScreenHandler::new);
+
+		OPI = Registry.register(Registry.BLOCK, OPI_IDENTIFIER, new Opi(getBlockSettings(OPI_IDENTIFIER)));
+		OPI_ITEM = Registry.register(Registry.ITEM, OPI_IDENTIFIER, new BlockItem(OPI, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
+		OPI_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, OPI_IDENTIFIER, FabricBlockEntityTypeBuilder.create(OpiEntity::new, OPI).build(null));
+		OPI_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(OPI_IDENTIFIER, GenericFilterScreenHandler::new);
 
 		VACTRACTOR = Registry.register(Registry.BLOCK, VACTRACTOR_IDENTIFIER, new Vactractor(getBlockSettings(VACTRACTOR_IDENTIFIER)));
 		VACTRACTOR_ITEM = Registry.register(Registry.ITEM, VACTRACTOR_IDENTIFIER, new BlockItem(VACTRACTOR, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));

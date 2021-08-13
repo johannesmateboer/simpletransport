@@ -46,6 +46,11 @@
     },
     {
       "type": "patchouli:crafting",
+      "recipe": "simpletransport:opi",
+      "title": "OPI"
+    },
+    {
+      "type": "patchouli:crafting",
       "recipe": "simpletransport:vactractor",
       "title": "Vactractor"
     }

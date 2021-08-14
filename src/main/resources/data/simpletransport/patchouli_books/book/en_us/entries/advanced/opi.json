@@ -1,0 +1,26 @@
+{
+  "name": "The Overflow-Protected-Inserter",
+  "icon": "simpletransport:opi",
+  "category": "simpletransport:advanced",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The OPI is a puller that can insert into chests. It is placed alongside a belt, and only pulls items set in the filter if the connected inventory can accept it."
+    },
+    {
+      "type": "spotlight",
+      "item": "simpletransport:opi",
+      "title": "OPI",
+      "text": "Notice the orange indicator on top: items will be moved towards that direction."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "To enable filtering-functions, Right-click on the OPI. A GUI with 9 fields will open.$(br)If you leave it empty, everything will be pulled.$(br)When no items are added, the OPI will not operate."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The amount of one itemstack is not doing anything at the moment. In a future-update it will have functionality."
+    }
+  ],
+  "sortnum": 3
+}

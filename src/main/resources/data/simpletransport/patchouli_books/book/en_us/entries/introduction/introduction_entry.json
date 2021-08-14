@@ -39,6 +39,12 @@
     },
     {
       "type": "spotlight",
+      "item": "simpletransport:inserter_upper",
+      "title": "Upper Inserter",
+      "text": "This inserter puts items in an inventory above it. "
+    },
+    {
+      "type": "spotlight",
       "item": "simpletransport:destructor",
       "title": "Destructor",
       "text": "Sometimes you have too much of something. Transport them to the destructor and they will be deleted."

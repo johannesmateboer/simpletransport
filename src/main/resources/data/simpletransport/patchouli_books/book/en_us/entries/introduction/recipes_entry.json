@@ -36,6 +36,11 @@
     },
     {
       "type": "patchouli:crafting",
+      "recipe": "simpletransport:inserter_upper",
+      "title": "Inserter"
+    },
+    {
+      "type": "patchouli:crafting",
       "recipe": "simpletransport:destructor",
       "title": "Destructor"
     },

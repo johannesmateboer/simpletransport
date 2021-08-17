@@ -13,7 +13,7 @@
       "item": "minecraft:hopper"
     },
     "H": {
-      "tag": "c:chests"
+      "tag": "c:wooden_chests"
     },
     "S": {
       "item": "simpletransport:conveyor"

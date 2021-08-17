@@ -13,7 +13,7 @@
       "item": "minecraft:redstone_torch"
     },
     "H": {
-      "tag": "minecraft:hopper"
+      "item": "minecraft:hopper"
     }
   },
   "result": {

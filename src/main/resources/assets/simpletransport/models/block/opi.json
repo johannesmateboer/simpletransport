@@ -3,6 +3,8 @@
 	"textures": {
 		"0": "simpletransport:machine_side",
 		"1": "simpletransport:opi",
+		"2": "simpletransport:vactractor_inner",
+		"3": "simpletransport:destructor",
 		"particle": "simpletransport:machine_side"
 	},
 	"elements": [
@@ -36,7 +38,7 @@
 			"from": [2, 1, 2],
 			"to": [14, 11, 4],
 			"faces": {
-				"north": {"uv": [2, 1, 14, 11], "texture": "#0"},
+				"north": {"uv": [2, 1, 14, 11], "texture": "#2"},
 				"east": {"uv": [0, 0, 2, 10], "texture": "#0"},
 				"south": {"uv": [2, 0, 14, 10], "texture": "#0"},
 				"west": {"uv": [14, 0, 16, 10], "texture": "#0"},
@@ -50,7 +52,7 @@
 			"faces": {
 				"north": {"uv": [1, 0, 13, 10], "texture": "#0"},
 				"east": {"uv": [13, 0, 15, 10], "texture": "#0"},
-				"south": {"uv": [2, 0, 14, 10], "texture": "#0"},
+				"south": {"uv": [3, 4, 15, 14], "texture": "#3"},
 				"west": {"uv": [0, 0, 2, 10], "texture": "#0"},
 				"up": {"uv": [2, 0, 14, 2], "texture": "#0"},
 				"down": {"uv": [0, 0, 12, 2], "texture": "#0"}

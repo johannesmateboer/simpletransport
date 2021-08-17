@@ -1,0 +1,28 @@
+{
+  "name": "Magnetic items",
+  "icon": "simpletransport:extractor",
+  "category": "simpletransport:advanced",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You may have noticed that you pick up items when walking over a conveyor-belt.$(br2)You can solve the problem by powering the extractor with a redstone signal."
+    },
+    {
+      "type": "spotlight",
+      "item": "simpletransport:extractor",
+      "title": "Power the extractor",
+      "text": "To enable magnetic-mode, power the extractor with a redstone signal (lever).$(br)This makes the items magnetic."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Items are magnetic until they gone through an unpowered Puller or OPI, or have entered a machine or inventory.$(br)To get rid of unremovable items, just put a Destructor in front of them."
+    },
+    {
+      "type": "spotlight",
+      "item": "simpletransport:destructor",
+      "title": "Destructor",
+      "text": "Removes every item that touches it."
+    }
+  ],
+  "sortnum": 4
+}

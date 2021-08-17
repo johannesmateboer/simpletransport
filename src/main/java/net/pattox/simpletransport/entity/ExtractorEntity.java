@@ -28,7 +28,6 @@ import net.pattox.simpletransport.util.ItemSpawner;
 import java.util.Objects;
 
 public class ExtractorEntity extends BlockEntity implements BlockEntityClientSerializable, NamedScreenHandlerFactory, BasicInventory {
-
     private int interval = 0;
 
     public ExtractorEntity(BlockPos pos, BlockState state) {
@@ -41,7 +40,6 @@ public class ExtractorEntity extends BlockEntity implements BlockEntityClientSer
         if (world.isClient()) {
             return;
         }
-
         if (blockEntity.interval > 30) {
             Direction direction = blockEntity.getCachedState().get(Properties.HORIZONTAL_FACING);
 
@@ -59,7 +57,7 @@ public class ExtractorEntity extends BlockEntity implements BlockEntityClientSer
 
                     if (!targetStack.isEmpty() && (hasNoFilter || blockEntity.isAllowedByFilter(targetStack))) {
                         ItemStack droppableStack = targetInventory.getStack(i);
-                        ItemSpawner.spawnOnBelt(world, pos, droppableStack);
+                        ItemSpawner.spawnOnBelt(world, pos, droppableStack, world.isReceivingRedstonePower(pos));
                         targetInventory.removeStack(i);
                         targetInventory.markDirty();
                         break;
@@ -117,5 +115,7 @@ public class ExtractorEntity extends BlockEntity implements BlockEntityClientSer
     public DefaultedList<ItemStack> getItems() {
         return items;
     }
+
+
 
 }

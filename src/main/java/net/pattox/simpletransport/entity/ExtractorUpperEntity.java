@@ -54,7 +54,7 @@ public class ExtractorUpperEntity extends BlockEntity implements BlockEntityClie
 
                     if (!targetStack.isEmpty() && (hasNoFilter || blockEntity.isAllowedByFilter(targetStack))) {
                         ItemStack droppableStack = targetInventory.getStack(i);
-                        ItemSpawner.spawnOnBelt(world, pos.offset(state.get(Properties.HORIZONTAL_FACING)), droppableStack);
+                        ItemSpawner.spawnOnBelt(world, pos.offset(state.get(Properties.HORIZONTAL_FACING)), droppableStack, world.isReceivingRedstonePower(pos));
                         targetInventory.removeStack(i);
                         targetInventory.markDirty();
                         break;

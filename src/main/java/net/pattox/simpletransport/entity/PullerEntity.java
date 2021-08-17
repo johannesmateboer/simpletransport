@@ -52,7 +52,7 @@ public class PullerEntity extends BlockEntity implements BlockEntityClientSerial
                 if (entity instanceof ItemEntity) {
                     ItemStack stack = ((ItemEntity) entity).getStack();
                     if (blockEntity.isAllowedByFilter(stack)) {
-                        ItemSpawner.spawnOnBelt(world, targetPos, stack);
+                        ItemSpawner.spawnOnBelt(world, targetPos, stack, world.isReceivingRedstonePower(pos));
                         entity.remove(Entity.RemovalReason.DISCARDED);
                     }
                 }

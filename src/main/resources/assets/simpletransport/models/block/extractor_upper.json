@@ -3,6 +3,7 @@
 	"textures": {
 		"2": "simpletransport:conveyor_new",
 		"4": "simpletransport:machine_side",
+		"5": "simpletransport:vactractor_inner",
 		"particle": "simpletransport:conveyor_new"
 	},
 	"elements": [
@@ -23,7 +24,7 @@
 			"from": [1, 1, 4],
 			"to": [15, 11, 6],
 			"faces": {
-				"north": {"uv": [1, 0, 15, 12], "texture": "#4"},
+				"north": {"uv": [1, 0, 15, 12], "texture": "#5"},
 				"east": {"uv": [0, 0, 2, 10], "texture": "#4"},
 				"south": {"uv": [0, 0, 14, 12], "texture": "#4"},
 				"west": {"uv": [13, 0, 16, 10], "texture": "#4"},

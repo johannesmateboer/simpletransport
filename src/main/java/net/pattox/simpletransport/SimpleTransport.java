@@ -29,6 +29,11 @@ public class SimpleTransport implements ModInitializer {
 	public static BlockEntityType<ConveyorEntity> CONVEYOR_ENTITY;
 	public static final Identifier CONVEYOR_IDENTIFIER = new Identifier(MOD_ID, "conveyor");
 
+	public static final Block CONVEYOR_DEMAG;
+	public static final BlockItem CONVEYOR_DEMAG_ITEM;
+	public static BlockEntityType<ConveyorDemagEntity> CONVEYOR_DEMAG_ENTITY;
+	public static final Identifier CONVEYOR_DEMAG_IDENTIFIER = new Identifier(MOD_ID, "conveyor_demag");
+
 	public static final Block EXTRACTOR;
 	public static final BlockItem EXTRACTOR_ITEM;
 	public static BlockEntityType<ExtractorEntity> EXTRACTOR_ENTITY;
@@ -87,6 +92,10 @@ public class SimpleTransport implements ModInitializer {
 		CONVEYOR = Registry.register(Registry.BLOCK, CONVEYOR_IDENTIFIER, new Conveyor(getBlockSettings(CONVEYOR_IDENTIFIER)));
 		CONVEYOR_ITEM = Registry.register(Registry.ITEM, CONVEYOR_IDENTIFIER, new BlockItem(CONVEYOR, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
 		CONVEYOR_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, CONVEYOR_IDENTIFIER, FabricBlockEntityTypeBuilder.create(ConveyorEntity::new, CONVEYOR).build(null));
+
+		CONVEYOR_DEMAG = Registry.register(Registry.BLOCK, CONVEYOR_DEMAG_IDENTIFIER, new ConveyorDemag(getBlockSettings(CONVEYOR_IDENTIFIER)));
+		CONVEYOR_DEMAG_ITEM = Registry.register(Registry.ITEM, CONVEYOR_DEMAG_IDENTIFIER, new BlockItem(CONVEYOR_DEMAG, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));
+		CONVEYOR_DEMAG_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, CONVEYOR_DEMAG_IDENTIFIER, FabricBlockEntityTypeBuilder.create(ConveyorDemagEntity::new, CONVEYOR_DEMAG).build(null));
 
 		CONVEYOR_DETECTOR = Registry.register(Registry.BLOCK, CONVEYOR_DETECTOR_IDENTIFIER, new ConveyorDetector(getBlockSettings(CONVEYOR_DETECTOR_IDENTIFIER)));
 		CONVEYOR_DETECTOR_ITEM = Registry.register(Registry.ITEM, CONVEYOR_DETECTOR_IDENTIFIER, new BlockItem(CONVEYOR_DETECTOR, new FabricItemSettings().group(SimpleTransport.ITEM_GROUP)));

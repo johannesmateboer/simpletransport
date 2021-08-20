@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RCR",
+    "   ",
+    "   "
+  ],
+  "key": {
+    "C": {
+      "item": "simpletransport:conveyor"
+    },
+    "R": {
+      "tag": "c:iron_nuggets"
+    }
+  },
+  "result": {
+    "item": "simpletransport:conveyor_demag",
+    "count": 1
+  }
+}

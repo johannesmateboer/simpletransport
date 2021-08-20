@@ -16,8 +16,14 @@
     {
       "type": "spotlight",
       "item": "simpletransport:conveyor_detector",
-      "title": "Conveyor-detecor",
+      "title": "Conveyor-detector",
       "text": "When an item passes over this belt, a redstone-signal is emitted."
+    },
+    {
+      "type": "spotlight",
+      "item": "simpletransport:conveyor_demag",
+      "title": "Demagnetising Conveyor-belt",
+      "text": "When an item passes over this belt, magnet-properties given by an OPI or some other device, are removed."
     },
     {
       "type": "spotlight",

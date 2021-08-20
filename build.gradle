@@ -19,6 +19,10 @@ repositories {
 	maven {
 		url 'https://maven.blamejared.com'
 	}
+	maven {
+		name = "CottonMC"
+		url = "https://server.bbkr.space/artifactory/libs-release"
+	}
 }
 
 dependencies {
@@ -30,7 +34,11 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+	// Patchouli book
 	include modImplementation("vazkii.patchouli:Patchouli:${project.patchouli_version}")
+
+	//LibGUI
+	modImplementation include("io.github.cottonmc:LibGui:${project.libgui_version}")
 }
 
 processResources {

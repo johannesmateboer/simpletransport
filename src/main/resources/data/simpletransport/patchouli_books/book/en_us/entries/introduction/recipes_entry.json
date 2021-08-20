@@ -19,6 +19,11 @@
     },
     {
       "type": "patchouli:crafting",
+      "recipe": "simpletransport:conveyor_demag",
+      "title": "Demagnetising conveyor"
+    },
+    {
+      "type": "patchouli:crafting",
       "recipe": "simpletransport:extractor",
       "recipe2": "simpletransport:inserter_to_extractor",
       "title": "Extractor"

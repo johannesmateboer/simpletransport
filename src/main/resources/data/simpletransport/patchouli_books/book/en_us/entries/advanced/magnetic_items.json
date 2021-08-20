@@ -15,7 +15,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Items are magnetic until they gone through an unpowered Puller or OPI, or have entered a machine or inventory.$(br)To get rid of unremovable items, just put a Destructor in front of them."
+      "text": "Items are magnetic until they gone over the Demagnetising Conveyorbelt, through an unpowered Puller or OPI, or have entered a machine or inventory.$(br)To get rid of unremovable items, just put a Destructor in front of them."
     },
     {
       "type": "spotlight",

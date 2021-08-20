@@ -19,9 +19,10 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.pattox.simpletransport.SimpleTransport;
 import net.pattox.simpletransport.entity.ExtractorUpperEntity;
+import net.pattox.simpletransport.init.Conveyorbelts;
 import net.pattox.simpletransport.util.VoxelUtil;
 import org.jetbrains.annotations.Nullable;
-
+@SuppressWarnings("deprecation")
 public class ExtractorUpper extends BlockWithEntity {
 
     public ExtractorUpper(Settings settings) {
@@ -63,7 +64,7 @@ public class ExtractorUpper extends BlockWithEntity {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, SimpleTransport.EXTRACTOR_UPPER_ENTITY, ExtractorUpperEntity::tick);
+        return checkType(type, Conveyorbelts.EXTRACTOR_UPPER_ENTITY, ExtractorUpperEntity::tick);
     }
 
     @Override

@@ -17,8 +17,8 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.pattox.simpletransport.SimpleTransport;
 import net.pattox.simpletransport.entity.InserterUpperEntity;
+import net.pattox.simpletransport.init.Conveyorbelts;
 import net.pattox.simpletransport.util.VoxelUtil;
 import org.jetbrains.annotations.Nullable;
 
@@ -60,7 +60,7 @@ public class InserterUpper extends BlockWithEntity {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, SimpleTransport.INSERTER_UPPER_ENTITY, InserterUpperEntity::tick);
+        return checkType(type, Conveyorbelts.INSERTER_UPPER_ENTITY, InserterUpperEntity::tick);
     }
 
     @Override

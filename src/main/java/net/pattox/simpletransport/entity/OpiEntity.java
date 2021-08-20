@@ -22,6 +22,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.pattox.simpletransport.SimpleTransport;
 import net.pattox.simpletransport.gui.GenericFilterScreenHandler;
+import net.pattox.simpletransport.init.Conveyorbelts;
 import net.pattox.simpletransport.util.BasicInventory;
 import net.pattox.simpletransport.util.InventoryUtil;
 
@@ -38,7 +39,7 @@ public class OpiEntity extends BlockEntity implements BlockEntityClientSerializa
     private final DefaultedList<ItemStack> items = DefaultedList.ofSize(9, ItemStack.EMPTY);
 
     public OpiEntity(BlockPos pos, BlockState state) {
-        super(SimpleTransport.OPI_ENTITY, pos, state);
+        super(Conveyorbelts.OPI_ENTITY, pos, state);
         this.targetDirection = state.get(Properties.HORIZONTAL_FACING).getOpposite();
         this.monitorPos = pos.offset(state.get(Properties.HORIZONTAL_FACING));
         this.targetPos = pos.offset(this.targetDirection);

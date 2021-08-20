@@ -24,10 +24,12 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.pattox.simpletransport.SimpleTransport;
 import net.pattox.simpletransport.entity.ExtractorEntity;
+import net.pattox.simpletransport.init.Conveyorbelts;
 import net.pattox.simpletransport.util.MovementUtil;
 import net.pattox.simpletransport.util.VoxelUtil;
 import org.jetbrains.annotations.Nullable;
 
+@SuppressWarnings("deprecation")
 public class Extractor extends BlockWithEntity {
 
     public Extractor(Settings settings) {
@@ -72,7 +74,7 @@ public class Extractor extends BlockWithEntity {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, SimpleTransport.EXTRACTOR_ENTITY, ExtractorEntity::tick);
+        return checkType(type, Conveyorbelts.EXTRACTOR_ENTITY, ExtractorEntity::tick);
     }
 
     @Override

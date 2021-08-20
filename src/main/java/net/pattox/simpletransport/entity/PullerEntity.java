@@ -22,6 +22,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.pattox.simpletransport.SimpleTransport;
 import net.pattox.simpletransport.gui.GenericFilterScreenHandler;
+import net.pattox.simpletransport.init.Conveyorbelts;
 import net.pattox.simpletransport.util.BasicInventory;
 import net.pattox.simpletransport.util.ItemSpawner;
 
@@ -34,7 +35,7 @@ public class PullerEntity extends BlockEntity implements BlockEntityClientSerial
     private final DefaultedList<ItemStack> items = DefaultedList.ofSize(9, ItemStack.EMPTY);
 
     public PullerEntity(BlockPos pos, BlockState state) {
-        super(SimpleTransport.PULLER_ENTITY, pos, state);
+        super(Conveyorbelts.PULLER_ENTITY, pos, state);
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, PullerEntity blockEntity) {

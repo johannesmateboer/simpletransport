@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.pattox.simpletransport.SimpleTransport;
+import net.pattox.simpletransport.init.Conveyorbelts;
 
 public class GenericFilterScreenHandler extends ScreenHandler {
     public final Inventory inventory;
@@ -23,7 +24,7 @@ public class GenericFilterScreenHandler extends ScreenHandler {
     // the server knows the inventory of the container
     // and can therefore directly provide it as an argument. This inventory will then be synced to the client.
     public GenericFilterScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
-        super(SimpleTransport.PULLER_SCREEN_HANDLER, syncId);
+        super(Conveyorbelts.PULLER_SCREEN_HANDLER, syncId);
         checkSize(inventory, 9);
         this.inventory = inventory;
 

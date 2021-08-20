@@ -21,6 +21,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import net.pattox.simpletransport.SimpleTransport;
 import net.pattox.simpletransport.gui.GenericFilterScreenHandler;
+import net.pattox.simpletransport.init.Conveyorbelts;
 import net.pattox.simpletransport.util.BasicInventory;
 import net.pattox.simpletransport.util.ItemSpawner;
 
@@ -33,7 +34,7 @@ public class InserterUpperEntity extends BlockEntity implements BlockEntityClien
     private final DefaultedList<ItemStack> items = DefaultedList.ofSize(9, ItemStack.EMPTY);
 
     public InserterUpperEntity(BlockPos pos, BlockState state) {
-        super(SimpleTransport.INSERTER_UPPER_ENTITY, pos, state);
+        super(Conveyorbelts.INSERTER_UPPER_ENTITY, pos, state);
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, InserterUpperEntity blockEntity) {

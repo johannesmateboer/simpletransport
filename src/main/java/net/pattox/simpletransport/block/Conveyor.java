@@ -16,6 +16,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.pattox.simpletransport.SimpleTransport;
 import net.pattox.simpletransport.entity.ConveyorEntity;
+import net.pattox.simpletransport.init.Conveyorbelts;
 import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("deprecation")
@@ -56,7 +57,7 @@ public class Conveyor extends BlockWithEntity {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, SimpleTransport.CONVEYOR_ENTITY, ConveyorEntity::tick);
+        return checkType(type, Conveyorbelts.CONVEYOR_ENTITY, ConveyorEntity::tick);
     }
 
 

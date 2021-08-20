@@ -21,6 +21,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.pattox.simpletransport.SimpleTransport;
 import net.pattox.simpletransport.gui.GenericFilterScreenHandler;
+import net.pattox.simpletransport.init.Conveyorbelts;
 import net.pattox.simpletransport.util.BasicInventory;
 import net.pattox.simpletransport.util.ItemSpawner;
 
@@ -29,7 +30,7 @@ public class ExtractorUpperEntity extends BlockEntity implements BlockEntityClie
     private int interval = 0;
 
     public ExtractorUpperEntity(BlockPos pos, BlockState state) {
-        super(SimpleTransport.EXTRACTOR_UPPER_ENTITY, pos, state);
+        super(Conveyorbelts.EXTRACTOR_UPPER_ENTITY, pos, state);
     }
 
     // Inventory for filterstorage

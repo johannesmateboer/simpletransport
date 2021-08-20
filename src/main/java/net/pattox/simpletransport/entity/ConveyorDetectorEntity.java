@@ -8,6 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import net.pattox.simpletransport.SimpleTransport;
+import net.pattox.simpletransport.init.Conveyorbelts;
 import net.pattox.simpletransport.util.MovementUtil;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 public class ConveyorDetectorEntity extends BlockEntity {
 
     public ConveyorDetectorEntity(BlockPos pos, BlockState state) {
-        super(SimpleTransport.CONVEYOR_DETECTOR_ENTITY, pos, state);
+        super(Conveyorbelts.CONVEYOR_DETECTOR_ENTITY, pos, state);
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, ConveyorDetectorEntity blockEntity) {

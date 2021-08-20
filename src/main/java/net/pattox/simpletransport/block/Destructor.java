@@ -18,6 +18,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.pattox.simpletransport.util.VoxelUtil;
 
+@SuppressWarnings("deprecation")
 public class Destructor extends Block {
 
     public Destructor(Settings settings) {

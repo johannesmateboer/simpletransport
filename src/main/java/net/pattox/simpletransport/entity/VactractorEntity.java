@@ -10,6 +10,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.pattox.simpletransport.SimpleTransport;
+import net.pattox.simpletransport.init.Conveyorbelts;
 import net.pattox.simpletransport.util.ItemSpawner;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class VactractorEntity extends BlockEntity {
     private int interval = 0;
 
     public VactractorEntity(BlockPos pos, BlockState state) {
-        super(SimpleTransport.VACTRACTOR_ENTITY, pos, state);
+        super(Conveyorbelts.VACTRACTOR_ENTITY, pos, state);
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, VactractorEntity blockEntity) {

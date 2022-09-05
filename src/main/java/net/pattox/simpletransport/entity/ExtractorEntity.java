@@ -42,7 +42,6 @@ public class ExtractorEntity extends BlockEntity implements NamedScreenHandlerFa
             // Is there something like and inventory on the other side?
             if (world.getBlockEntity(pos.offset(direction.getOpposite())) instanceof Inventory) {
                 Inventory targetInventory = (Inventory) world.getBlockEntity(pos.offset(direction.getOpposite()));
-                boolean hasNoFilter = blockEntity.isEmpty();
 
                 // Iterate over the slots in the target-inventory and drop things when its not empty.
                 for (int i = 0; i < targetInventory.size(); i++) {
@@ -51,7 +50,12 @@ public class ExtractorEntity extends BlockEntity implements NamedScreenHandlerFa
                         continue;
                     }
 
-                    if (!targetStack.isEmpty() && (hasNoFilter)) {
+                    // Is allowed by filter?
+                    if (!blockEntity.isAllowedByFilter(targetInventory.getStack(i))) {
+                        continue;
+                    }
+
+                    if (!targetStack.isEmpty()) {
                         ItemStack droppableStack = targetInventory.getStack(i);
                         ItemSpawner.spawnOnBelt(world, pos, droppableStack, world.isReceivingRedstonePower(pos));
                         targetInventory.removeStack(i);
@@ -90,6 +94,14 @@ public class ExtractorEntity extends BlockEntity implements NamedScreenHandlerFa
     @Override
     public DefaultedList<ItemStack> getItems() {
         return items;
+    }
+
+    public boolean isAllowedByFilter(ItemStack stack) {
+        if (this.isEmpty()) {
+            return true;
+        } else {
+            return this.containsStack(stack);
+        }
     }
 
 

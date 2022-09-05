@@ -39,7 +39,7 @@ public class ExtractorUpperEntity extends BlockEntity implements NamedScreenHand
             return;
         }
         if (blockEntity.interval > 30) {
-            // Is there something like and inventory on the other side?
+            // Is there something like an inventory on the other side?
             if (world.getBlockEntity(pos.offset(Direction.UP)) instanceof Inventory) {
                 Inventory targetInventory = (Inventory) world.getBlockEntity(pos.offset(Direction.UP));
                 boolean hasNoFilter = blockEntity.isEmpty();

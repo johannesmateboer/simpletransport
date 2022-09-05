@@ -1,5 +1,6 @@
 package net.pattox.simpletransport.entity;
 
+import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -18,12 +19,13 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import net.pattox.simpletransport.SimpleTransport;
 import net.pattox.simpletransport.gui.GenericFilterScreenHandler;
 import net.pattox.simpletransport.init.Conveyorbelts;
 import net.pattox.simpletransport.util.BasicInventory;
 import net.pattox.simpletransport.util.ItemSpawner;
 
-public class ExtractorUpperEntity extends BlockEntity implements NamedScreenHandlerFactory, BasicInventory {
+public class ExtractorUpperEntity extends BlockEntity implements BlockEntityClientSerializable, NamedScreenHandlerFactory, BasicInventory {
 
     private int interval = 0;
 
@@ -39,7 +41,7 @@ public class ExtractorUpperEntity extends BlockEntity implements NamedScreenHand
             return;
         }
         if (blockEntity.interval > 30) {
-            // Is there something like an inventory on the other side?
+            // Is there something like and inventory on the other side?
             if (world.getBlockEntity(pos.offset(Direction.UP)) instanceof Inventory) {
                 Inventory targetInventory = (Inventory) world.getBlockEntity(pos.offset(Direction.UP));
                 boolean hasNoFilter = blockEntity.isEmpty();
@@ -85,8 +87,19 @@ public class ExtractorUpperEntity extends BlockEntity implements NamedScreenHand
     }
 
     @Override
-    public void writeNbt(NbtCompound nbt) {
+    public NbtCompound writeNbt(NbtCompound nbt) {
         Inventories.writeNbt(nbt, items);
+        return super.writeNbt(nbt);
+    }
+
+    @Override
+    public void fromClientTag(NbtCompound compoundTag) {
+        readNbt(compoundTag);
+    }
+
+    @Override
+    public NbtCompound toClientTag(NbtCompound compoundTag) {
+        return writeNbt(compoundTag);
     }
 
     @Override

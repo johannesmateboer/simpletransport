@@ -1,5 +1,6 @@
 package net.pattox.simpletransport.entity;
 
+import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -7,6 +8,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
@@ -18,42 +20,45 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import net.pattox.simpletransport.SimpleTransport;
 import net.pattox.simpletransport.gui.GenericFilterScreenHandler;
 import net.pattox.simpletransport.init.Conveyorbelts;
 import net.pattox.simpletransport.util.BasicInventory;
 import net.pattox.simpletransport.util.ItemSpawner;
 
-public class ExtractorUpperEntity extends BlockEntity implements NamedScreenHandlerFactory, BasicInventory {
+import java.util.Objects;
 
+public class ExtractorEntity extends BlockEntity implements BlockEntityClientSerializable, NamedScreenHandlerFactory, BasicInventory {
     private int interval = 0;
 
-    public ExtractorUpperEntity(BlockPos pos, BlockState state) {
-        super(Conveyorbelts.EXTRACTOR_UPPER_ENTITY, pos, state);
+    public ExtractorEntity(BlockPos pos, BlockState state) {
+        super(Conveyorbelts.EXTRACTOR_ENTITY, pos, state);
     }
 
-    // Inventory for filterstorage
     private final DefaultedList<ItemStack> items = DefaultedList.ofSize(9, ItemStack.EMPTY);
 
-    public static void tick(World world, BlockPos pos, BlockState state, ExtractorUpperEntity blockEntity) {
+    public static void tick(World world, BlockPos pos, BlockState state, ExtractorEntity blockEntity) {
         if (world.isClient()) {
             return;
         }
         if (blockEntity.interval > 30) {
-            // Is there something like an inventory on the other side?
-            if (world.getBlockEntity(pos.offset(Direction.UP)) instanceof Inventory) {
-                Inventory targetInventory = (Inventory) world.getBlockEntity(pos.offset(Direction.UP));
+            Direction direction = blockEntity.getCachedState().get(Properties.HORIZONTAL_FACING);
+
+            // Is there something like and inventory on the other side?
+            if (world.getBlockEntity(pos.offset(direction.getOpposite())) instanceof Inventory) {
+                Inventory targetInventory = (Inventory) world.getBlockEntity(pos.offset(direction.getOpposite()));
                 boolean hasNoFilter = blockEntity.isEmpty();
 
                 // Iterate over the slots in the target-inventory and drop things when its not empty.
                 for (int i = 0; i < targetInventory.size(); i++) {
                     ItemStack targetStack = targetInventory.getStack(i);
-                    if (targetInventory instanceof SidedInventory && !((SidedInventory) targetInventory).canExtract(i, targetStack, Direction.DOWN)) {
+                    if (targetInventory instanceof SidedInventory && !((SidedInventory) targetInventory).canExtract(i, targetStack, direction)) {
                         continue;
                     }
 
                     if (!targetStack.isEmpty() && (hasNoFilter || blockEntity.isAllowedByFilter(targetStack))) {
                         ItemStack droppableStack = targetInventory.getStack(i);
-                        ItemSpawner.spawnOnBelt(world, pos.offset(state.get(Properties.HORIZONTAL_FACING)), droppableStack, world.isReceivingRedstonePower(pos));
+                        ItemSpawner.spawnOnBelt(world, pos, droppableStack, world.isReceivingRedstonePower(pos));
                         targetInventory.removeStack(i);
                         targetInventory.markDirty();
                         break;
@@ -66,27 +71,33 @@ public class ExtractorUpperEntity extends BlockEntity implements NamedScreenHand
         }
     }
 
-    /**
-     * When no filter is present, everything is allowed.
-     * @param stack The stack to check
-     * @return  True when allowed, false when not allowed
-     */
-    public boolean isAllowedByFilter(ItemStack stack) {
-        if (this.isEmpty()) {
-            return true;
-        }else {
-            return this.containsStack(stack);
-        }
-    }
-
     @Override
     public void readNbt(NbtCompound nbt) {
         Inventories.readNbt(nbt, items);
     }
 
     @Override
-    public void writeNbt(NbtCompound nbt) {
+    public NbtCompound writeNbt(NbtCompound nbt) {
         Inventories.writeNbt(nbt, items);
+        return super.writeNbt(nbt);
+    }
+
+    @Override
+    public void fromClientTag(NbtCompound compoundTag) {
+        readNbt(compoundTag);
+    }
+
+    @Override
+    public NbtCompound toClientTag(NbtCompound compoundTag) {
+        return writeNbt(compoundTag);
+    }
+
+    public boolean isAllowedByFilter(ItemStack stack) {
+        if (this.isEmpty()) {
+            return true;
+        }else {
+            return this.containsStack(stack);
+        }
     }
 
     @Override
@@ -105,6 +116,7 @@ public class ExtractorUpperEntity extends BlockEntity implements NamedScreenHand
     public DefaultedList<ItemStack> getItems() {
         return items;
     }
+
 
 
 }

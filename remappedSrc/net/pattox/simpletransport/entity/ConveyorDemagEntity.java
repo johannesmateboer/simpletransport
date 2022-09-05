@@ -8,6 +8,7 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
+import net.pattox.simpletransport.SimpleTransport;
 import net.pattox.simpletransport.init.Conveyorbelts;
 import net.pattox.simpletransport.util.MovementUtil;
 
@@ -23,6 +24,7 @@ public class ConveyorDemagEntity extends BlockEntity {
         if (world.isClient()) {
             return;
         }
+
         List<Entity> entities = world.getOtherEntities(null, new Box(pos));
         for (Entity entity : entities) {
             if (entity instanceof ItemEntity){

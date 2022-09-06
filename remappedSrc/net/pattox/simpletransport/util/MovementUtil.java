@@ -6,28 +6,42 @@ import net.minecraft.util.math.Direction;
 
 public class MovementUtil {
     public static void pushEntity(Entity entity, BlockPos pos, float speed, Direction facing) {
-        pushEntity(entity, pos, speed, facing, true);
+        pushEntity(entity, pos, speed, facing, true, false);
     }
 
-    public static void pushEntity(Entity entity, BlockPos pos, float speed, Direction facing, boolean shouldCenter) {
+    public static void pushEntity(Entity entity, BlockPos pos, float speed, Direction facing, boolean shouldCenter, boolean shouldGoUp) {
         double motionX = entity.getVelocity().getX();
         double motionZ = entity.getVelocity().getZ();
 
+        double velX = 0;
+        double velY = 0;
+        double velZ = 0;
+        float throwAddAmount = 0;
+
+        if (shouldGoUp) {
+            velY = 0.075F;
+            speed = speed + 0.03F;
+        }
+        speed = speed + throwAddAmount;
+
         if (speed * facing.getOffsetX() > 0 && motionX < speed) {
-            entity.addVelocity(speed / 2, 0, 0);
+            velX = speed / 2;
         } else if (speed * facing.getOffsetX() < 0 && motionX > -speed) {
-            entity.addVelocity(-speed / 2, 0, 0);
+            velX = -speed / 2;
         }
 
         if (speed * facing.getOffsetZ() > 0 && motionZ < speed) {
-            entity.addVelocity(0, 0, speed / 2);
+            velZ = speed / 2;
         } else if (speed * facing.getOffsetZ() < 0 && motionZ > -speed) {
-            entity.addVelocity(0, 0, -speed / 2);
+            velZ = -speed / 2;
         }
 
         if (shouldCenter) {
             centerEntity(entity, pos, speed, facing);
         }
+
+        entity.addVelocity(velX, velY, velZ);
+        entity.velocityDirty = true;
     }
 
     private static void centerEntity(Entity entity, BlockPos pos, float speed, Direction facing) {

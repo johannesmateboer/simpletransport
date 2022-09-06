@@ -29,7 +29,7 @@ public class GenericFilterScreen extends HandledScreen<GenericFilterScreenHandle
 
     @Override
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
-        this.textRenderer.draw(matrices, this.title.asString(), 8.0F, 6.0F, 4210752);
+        this.textRenderer.draw(matrices, this.title.getString(), 8.0F, 6.0F, 4210752);
         this.textRenderer.draw(matrices, "Inventory", 8.0F, (float)(this.backgroundHeight - 96 + 2), 4210752);
     }
 

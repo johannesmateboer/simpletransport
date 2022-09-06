@@ -26,6 +26,13 @@ public class Conveyorbelts {
     public static final BlockItem CONVEYOR_ITEM;
     public static BlockEntityType<ConveyorEntity> CONVEYOR_ENTITY;
 
+
+    public static final Identifier CONVEYOR_UP_IDENTIFIER = new Identifier(SimpleTransport.MOD_ID, "conveyor_up");
+    public static final Block CONVEYOR_UP;
+    public static final BlockItem CONVEYOR_UP_ITEM;
+    public static BlockEntityType<ConveyorUpEntity> CONVEYOR_UP_ENTITY;
+
+
     public static final Block CONVEYOR_DEMAG;
     public static final BlockItem CONVEYOR_DEMAG_ITEM;
     public static BlockEntityType<ConveyorDemagEntity> CONVEYOR_DEMAG_ENTITY;
@@ -90,6 +97,11 @@ public class Conveyorbelts {
         //CONVEYOR = Registry.register(Registry.BLOCK, CONVEYOR_IDENTIFIER, new Conveyor(getBlockSettings(CONVEYOR_IDENTIFIER)));
         CONVEYOR_ITEM = Registry.register(Registry.ITEM, CONVEYOR_IDENTIFIER, new BlockItem(CONVEYOR, new FabricItemSettings().group(ITEM_GROUP)));
         CONVEYOR_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, CONVEYOR_IDENTIFIER, FabricBlockEntityTypeBuilder.create(ConveyorEntity::new, CONVEYOR).build(null));
+
+        // Moving upwards
+        CONVEYOR_UP = Registry.register(Registry.BLOCK, CONVEYOR_UP_IDENTIFIER, new ConveyorUp(getBlockSettings(CONVEYOR_UP_IDENTIFIER)));
+        CONVEYOR_UP_ITEM = Registry.register(Registry.ITEM, CONVEYOR_UP_IDENTIFIER, new BlockItem(CONVEYOR_UP, new FabricItemSettings().group(ITEM_GROUP)));
+        CONVEYOR_UP_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, CONVEYOR_UP_IDENTIFIER, FabricBlockEntityTypeBuilder.create(ConveyorUpEntity::new, CONVEYOR_UP).build(null));
 
         CONVEYOR_DEMAG = Registry.register(Registry.BLOCK, CONVEYOR_DEMAG_IDENTIFIER, new ConveyorDemag(getBlockSettings(CONVEYOR_IDENTIFIER)));
         CONVEYOR_DEMAG_ITEM = Registry.register(Registry.ITEM, CONVEYOR_DEMAG_IDENTIFIER, new BlockItem(CONVEYOR_DEMAG, new FabricItemSettings().group(ITEM_GROUP)));

@@ -7,7 +7,6 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
-import net.pattox.simpletransport.SimpleTransport;
 import net.pattox.simpletransport.init.Conveyorbelts;
 import net.pattox.simpletransport.util.MovementUtil;
 

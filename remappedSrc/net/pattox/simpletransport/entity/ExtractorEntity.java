@@ -1,6 +1,5 @@
 package net.pattox.simpletransport.entity;
 
-import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -8,7 +7,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
@@ -20,15 +18,12 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import net.pattox.simpletransport.SimpleTransport;
 import net.pattox.simpletransport.gui.GenericFilterScreenHandler;
 import net.pattox.simpletransport.init.Conveyorbelts;
 import net.pattox.simpletransport.util.BasicInventory;
 import net.pattox.simpletransport.util.ItemSpawner;
 
-import java.util.Objects;
-
-public class ExtractorEntity extends BlockEntity implements BlockEntityClientSerializable, NamedScreenHandlerFactory, BasicInventory {
+public class ExtractorEntity extends BlockEntity implements NamedScreenHandlerFactory, BasicInventory {
     private int interval = 0;
 
     public ExtractorEntity(BlockPos pos, BlockState state) {
@@ -47,7 +42,6 @@ public class ExtractorEntity extends BlockEntity implements BlockEntityClientSer
             // Is there something like and inventory on the other side?
             if (world.getBlockEntity(pos.offset(direction.getOpposite())) instanceof Inventory) {
                 Inventory targetInventory = (Inventory) world.getBlockEntity(pos.offset(direction.getOpposite()));
-                boolean hasNoFilter = blockEntity.isEmpty();
 
                 // Iterate over the slots in the target-inventory and drop things when its not empty.
                 for (int i = 0; i < targetInventory.size(); i++) {
@@ -56,7 +50,12 @@ public class ExtractorEntity extends BlockEntity implements BlockEntityClientSer
                         continue;
                     }
 
-                    if (!targetStack.isEmpty() && (hasNoFilter || blockEntity.isAllowedByFilter(targetStack))) {
+                    // Is allowed by filter?
+                    if (!blockEntity.isAllowedByFilter(targetInventory.getStack(i))) {
+                        continue;
+                    }
+
+                    if (!targetStack.isEmpty()) {
                         ItemStack droppableStack = targetInventory.getStack(i);
                         ItemSpawner.spawnOnBelt(world, pos, droppableStack, world.isReceivingRedstonePower(pos));
                         targetInventory.removeStack(i);
@@ -77,29 +76,9 @@ public class ExtractorEntity extends BlockEntity implements BlockEntityClientSer
     }
 
     @Override
-    public NbtCompound writeNbt(NbtCompound nbt) {
+    public void writeNbt(NbtCompound nbt) {
         Inventories.writeNbt(nbt, items);
-        return super.writeNbt(nbt);
     }
-
-    @Override
-    public void fromClientTag(NbtCompound compoundTag) {
-        readNbt(compoundTag);
-    }
-
-    @Override
-    public NbtCompound toClientTag(NbtCompound compoundTag) {
-        return writeNbt(compoundTag);
-    }
-
-    public boolean isAllowedByFilter(ItemStack stack) {
-        if (this.isEmpty()) {
-            return true;
-        }else {
-            return this.containsStack(stack);
-        }
-    }
-
     @Override
     public Text getDisplayName() {
         return new TranslatableText("Filter");
@@ -115,6 +94,14 @@ public class ExtractorEntity extends BlockEntity implements BlockEntityClientSer
     @Override
     public DefaultedList<ItemStack> getItems() {
         return items;
+    }
+
+    public boolean isAllowedByFilter(ItemStack stack) {
+        if (this.isEmpty()) {
+            return true;
+        } else {
+            return this.containsStack(stack);
+        }
     }
 
 

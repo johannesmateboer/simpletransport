@@ -20,7 +20,7 @@ public class MovementUtil {
 
         if (shouldGoUp) {
             velY = 0.075F;
-            speed = speed + 0.03F;
+            speed = speed + 0.035F;
         }
         speed = speed + throwAddAmount;
 

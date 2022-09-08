@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "K  ",
+    "S  ",
+    "   "
+  ],
+  "key": {
+    "K": {
+      "item": "simpletransport:conveyor"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "simpletransport:conveyor_up",
+    "count": 1
+  }
+}
